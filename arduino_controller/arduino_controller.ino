@@ -1,6 +1,6 @@
 #include <SPI.h>
 #include <WiFiNINA.h>
-#include <arduino_secrets.h>
+#include "arduino_secrets.h"
 
 #define led 2
 
@@ -13,7 +13,7 @@ int keyIndex = 0;
 int status = WL_IDLE_STATUS;
 WiFiServer server(80);
 
-String readString; 
+String readString;
 
 void setup() {
   pinMode(led, OUTPUT);
