@@ -37,41 +37,44 @@ void setup() {
 
 void loop() {
   WiFiClient client = server.available();
-  if (client)
-  {
+  if (client) {
     Serial.println("new client");
 
-    while (client.connected())
-    {
-      if (client.available())
-      {
+    while (client.connected()) {
+      if (client.available()) {
         char c = client.read();
-        if (readString.length() < 100)
-        {
+        if (readString.length() < 100) {
           readString += c;
           Serial.write(c);
-          
+
           if (c == '\n') {
-            client.println("<a href=\"/?lighton\"\">Turn On Light</a>");
-            client.println("<br />");
-            client.println("<br />");
-            client.println("<a href=\"/?lightoff\"\">Turn Off Light</a><br />");     
+            client.println("<html>");
+            client.println("<head><title>Sith Lightsaber</title></head>");
+            client.println("<body>");
+            client.println("<h1>Sith Lightsaber Control</h1>");
+            client.println("<form method=\"get\" action=\"\">");
+            client.println("<select name=\"ledState\">");
+            client.println("<option value=\"on\">Turn On Light</option>");
+            client.println("<option value=\"off\">Turn Off Light</option>");
+            client.println("</select>");
+            client.println("<br>");
+            client.println("<br>");
+            client.println("<input type=\"submit\" value=\"Submit\">");
+            client.println("</form>");
+            client.println("</body>");
+            client.println("</html>");
 
             delay(1);
-            
-            if(readString.indexOf("?lighton") > 0)
-            {
+
+            if (readString.indexOf("ledState=on") > 0) {
               digitalWrite(led, HIGH);
               delay(1);
+            } else if (readString.indexOf("ledState=off") > 0) {
+              digitalWrite(led, LOW);
+              delay(1);
             }
-            else{
-              if(readString.indexOf("?lightoff") > 0)
-              {
-                digitalWrite(led, LOW);    
-                delay(1);
-              }
-            }           
-            readString="";
+
+            readString = "";
 
             delay(1);
             client.stop();
