@@ -3,9 +3,8 @@
 #include "arduino_secrets.h"
 
 #define led 2
+#define setArduinoIP IPAddress(192, 168, 1, 150) // set the IP address of the Arduino
 
-//char ssid[] = "test";
-//char pass[] = "";
 char ssid[] = SECRET_SSID;
 char pass[] = SECRET_PASSWORD;
 int keyIndex = 0;
@@ -18,6 +17,8 @@ String readString;
 void setup() {
   pinMode(led, OUTPUT);
   Serial.begin(9600);
+
+  WiFi.config(setArduinoIP);
 
   while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to Network named: ");
