@@ -75,7 +75,7 @@ void loop() {
 
             delay(1);
             client.stop();
-            Serial.println("client disonnected");
+            Serial.println("client disconnected");
           }
         }
       }
