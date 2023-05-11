@@ -1,22 +1,58 @@
 #include <SPI.h>
 #include <WiFiNINA.h>
 #include "arduino_secrets.h"
+#include <FastLED.h>
 
-#define led 2
+#define DATA_PIN 2
 #define setArduinoIP IPAddress(192, 168, 1, 150) // set the IP address of the Arduino
+
+// LED strip setup values
+#define NUM_LEDS 144
+#define CHIP_SET WS2812B
+#define COLOR_ORDER GRB
+#define BRIGHTNESS 200
+#define MAX_VOLTS 5
+#define MAX_AMPS 4500
+#define BAUD 57600
 
 char ssid[] = SECRET_SSID;
 char pass[] = SECRET_PASSWORD;
 int keyIndex = 0;
+CRGB leds[NUM_LEDS];
 
 int status = WL_IDLE_STATUS;
 WiFiServer server(80);
 
 String readString;
 
+void turnOffAll() {
+
+  //delay(1); // wait for 5 seconds before turning off the LEDs
+  for(int i = (NUM_LEDS - 1); i >= 0; i--) {
+    leds[i] = CRGB::Black; // turn off the i'th LED
+    FastLED.show();
+  }
+  delay(1); // wait for 1 second before repeating the loop
+
+}
+
+void lightUpColor(CRGB color) {
+
+  for(int i = 0; i < NUM_LEDS; i++) {
+    leds[i] = color;
+    FastLED.show();
+  }
+
+  delay(1); // wait for 1 second before repeating the loop
+
+}
+
 void setup() {
-  pinMode(led, OUTPUT);
-  Serial.begin(9600);
+  //pinMode(led, OUTPUT);
+  FastLED.addLeds<CHIP_SET, DATA_PIN, COLOR_ORDER> (leds,NUM_LEDS);
+	FastLED.setBrightness(BRIGHTNESS);
+  FastLED.setMaxPowerInVoltsAndMilliamps(MAX_VOLTS, MAX_AMPS);
+  Serial.begin(BAUD);
 
   WiFi.config(setArduinoIP);
 
@@ -54,8 +90,13 @@ void loop() {
             client.println("<h1>Sith Lightsaber Control</h1>");
             client.println("<form method=\"get\" action=\"\">");
             client.println("<select name=\"ledState\">");
-            client.println("<option value=\"on\">Turn On Light</option>");
-            client.println("<option value=\"off\">Turn Off Light</option>");
+            client.println("<option value=\"AllOff\">Turn Off</option>");
+            client.println("<option value=\"Blue\">Blue</option>");
+            client.println("<option value=\"Green\">Green</option>");
+            client.println("<option value=\"Orange\">Orange</option>");
+            client.println("<option value=\"Purple\">Purple</option>");
+            client.println("<option value=\"Red\">Red</option>");
+            client.println("<option value=\"Yellow\">Yellow</option>");
             client.println("</select>");
             client.println("<br>");
             client.println("<br>");
@@ -66,12 +107,45 @@ void loop() {
 
             delay(1);
 
-            if (readString.indexOf("ledState=on") > 0) {
-              digitalWrite(led, HIGH);
-              delay(1);
-            } else if (readString.indexOf("ledState=off") > 0) {
-              digitalWrite(led, LOW);
-              delay(1);
+            if (readString.indexOf("ledState=AllOff") > 0) {
+              turnOffAll();
+              //delay(1);
+            } else if (readString.indexOf("ledState=Green") > 0) {
+              turnOffAll();
+              //delay(1);
+              CRGB colorChoice = CRGB::Green;
+              lightUpColor(colorChoice);
+              //delay(1);
+            } else if (readString.indexOf("ledState=Red") > 0) {
+              turnOffAll();
+              //delay(1);
+              CRGB colorChoice = CRGB::Red;
+              lightUpColor(colorChoice);
+              //delay(1);
+            } else if (readString.indexOf("ledState=Yellow") > 0) {
+              turnOffAll();
+              //delay(1);
+              CRGB colorChoice = CRGB::Yellow;
+              lightUpColor(colorChoice);
+              //delay(1);
+            } else if (readString.indexOf("ledState=Blue") > 0) {
+              turnOffAll();
+              //delay(1);
+              CRGB colorChoice = CRGB::Blue;
+              lightUpColor(colorChoice);
+              //delay(1);
+            } else if (readString.indexOf("ledState=Purple") > 0) {
+              turnOffAll();
+              //delay(1);
+              CRGB colorChoice = CRGB::Purple;
+              lightUpColor(colorChoice);
+              //delay(1);
+            } else if (readString.indexOf("ledState=Orange") > 0) {
+              turnOffAll();
+              //delay(1);
+              CRGB colorChoice = CRGB::Orange;
+              lightUpColor(colorChoice);
+              //delay(1);
             }
 
             readString = "";
