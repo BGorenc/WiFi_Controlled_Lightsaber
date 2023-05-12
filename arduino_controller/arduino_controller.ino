@@ -93,7 +93,7 @@ void loop() {
             client.println("<option value=\"AllOff\">Turn Off</option>");
             client.println("<option value=\"Blue\">Blue</option>");
             client.println("<option value=\"Green\">Green</option>");
-            client.println("<option value=\"Orange\">Orange</option>");
+            client.println("<option value=\"Pink\">Pink</option>");
             client.println("<option value=\"Purple\">Purple</option>");
             client.println("<option value=\"Red\">Red</option>");
             client.println("<option value=\"Yellow\">Yellow</option>");
@@ -122,10 +122,10 @@ void loop() {
               CRGB colorChoice = CRGB::Red;
               lightUpColor(colorChoice);
               //delay(1);
-            } else if (readString.indexOf("ledState=Yellow") > 0) {
+            } else if (readString.indexOf("ledState=Pink") > 0) {
               turnOffAll();
               //delay(1);
-              CRGB colorChoice = CRGB::Yellow;
+              CRGB colorChoice = CRGB::DeepPink;
               lightUpColor(colorChoice);
               //delay(1);
             } else if (readString.indexOf("ledState=Blue") > 0) {
@@ -137,13 +137,13 @@ void loop() {
             } else if (readString.indexOf("ledState=Purple") > 0) {
               turnOffAll();
               //delay(1);
-              CRGB colorChoice = CRGB::Purple;
+              CRGB colorChoice = CRGB::DarkViolet;
               lightUpColor(colorChoice);
               //delay(1);
-            } else if (readString.indexOf("ledState=Orange") > 0) {
+            } else if (readString.indexOf("ledState=Yellow") > 0) {
               turnOffAll();
               //delay(1);
-              CRGB colorChoice = CRGB::Orange;
+              CRGB colorChoice = CRGB::Yellow;
               lightUpColor(colorChoice);
               //delay(1);
             }
