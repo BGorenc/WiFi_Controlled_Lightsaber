@@ -4,7 +4,7 @@
 #include <FastLED.h>
 
 #define DATA_PIN 2
-#define setArduinoIP IPAddress(192, 168, 1, 150) // set the IP address of the Arduino
+#define setArduinoIP IPAddress(192, 168, 1, 151) // set the IP address of the Arduino
 
 // LED strip setup values
 #define NUM_LEDS 144
@@ -85,9 +85,9 @@ void loop() {
 
           if (c == '\n') {
             client.println("<html>");
-            client.println("<head><title>Sith Lightsaber</title></head>");
+            client.println("<head><title>Jedi Lightsaber</title></head>");
             client.println("<body>");
-            client.println("<h1>Sith Lightsaber Control</h1>");
+            client.println("<h1>Jedi Lightsaber Control</h1>");
             client.println("<form method=\"get\" action=\"\">");
             client.println("<select name=\"ledState\">");
             client.println("<option value=\"AllOff\">Turn Off</option>");
