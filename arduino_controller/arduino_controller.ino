@@ -4,6 +4,7 @@
 #include <FastLED.h>
 
 #define DATA_PIN 2
+#define DATA_PIN_CLONE 3 // Second LED Pin
 #define setArduinoIP IPAddress(192, 168, 1, 151) // set the IP address of the Arduino
 
 // LED strip setup values
@@ -19,6 +20,7 @@ char ssid[] = SECRET_SSID;
 char pass[] = SECRET_PASSWORD;
 int keyIndex = 0;
 CRGB leds[NUM_LEDS];
+CRGB ledsClone[NUM_LEDS]; // Second LED Strip
 
 int status = WL_IDLE_STATUS;
 WiFiServer server(80);
@@ -30,6 +32,7 @@ void turnOffAll() {
   //delay(1); // wait for 5 seconds before turning off the LEDs
   for(int i = (NUM_LEDS - 1); i >= 0; i--) {
     leds[i] = CRGB::Black; // turn off the i'th LED
+    ledsClone[i] = CRGB::Black; // Second LED Strip
     FastLED.show();
   }
   delay(1); // wait for 1 second before repeating the loop
@@ -40,6 +43,7 @@ void lightUpColor(CRGB color) {
 
   for(int i = 0; i < NUM_LEDS; i++) {
     leds[i] = color;
+    ledsClone[i] = color; // Second LED Strip
     FastLED.show();
   }
 
@@ -50,6 +54,7 @@ void lightUpColor(CRGB color) {
 void setup() {
   //pinMode(led, OUTPUT);
   FastLED.addLeds<CHIP_SET, DATA_PIN, COLOR_ORDER> (leds,NUM_LEDS);
+  FastLED.addLeds<CHIP_SET, DATA_PIN_CLONE, COLOR_ORDER> (ledsClone,NUM_LEDS); // Second LED Strip
 	FastLED.setBrightness(BRIGHTNESS);
   FastLED.setMaxPowerInVoltsAndMilliamps(MAX_VOLTS, MAX_AMPS);
   Serial.begin(BAUD);
@@ -85,9 +90,9 @@ void loop() {
 
           if (c == '\n') {
             client.println("<html>");
-            client.println("<head><title>Jedi Lightsaber</title></head>");
+            client.println("<head><title>Sith Lightsaber</title></head>");
             client.println("<body>");
-            client.println("<h1>Jedi Lightsaber Control</h1>");
+            client.println("<h1>Sith Lightsaber Control</h1>");
             client.println("<form method=\"get\" action=\"\">");
             client.println("<select name=\"ledState\">");
             client.println("<option value=\"AllOff\">Turn Off</option>");
