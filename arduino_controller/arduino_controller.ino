@@ -5,7 +5,7 @@
 
 #define DATA_PIN 2
 #define DATA_PIN_CLONE 3 // Second LED Pin
-#define setArduinoIP IPAddress(192, 168, 1, 151) // set the IP address of the Arduino
+#define setArduinoIP IPAddress(192, 168, 1, 150) // set the IP address of the Arduino
 
 // LED strip setup values
 #define NUM_LEDS 144
