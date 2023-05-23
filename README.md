@@ -39,20 +39,33 @@ The objective of this project is to employ an Arduino microcontroller that can w
 
 - 1x [Light Saber Wall Mount Upper Hilt and Blade Support](https://www.amazon.com/dp/B07DLXKMJX?psc=1&ref=ppx_yo2ov_dt_b_product_details)
 - 1x [Light Saber Wall Mount Base Support](https://www.amazon.com/dp/B0B7D3ST7C?psc=1&ref=ppx_yo2ov_dt_b_product_details)
-- 1x [WAGO Connectors 6 or more](https://www.amazon.com/dp/B0BKR2SR7H?psc=1&ref=ppx_yo2ov_dt_b_product_details)
+- 1x [WAGO Connectors 6 or More](https://www.amazon.com/dp/B0BKR2SR7H?psc=1&ref=ppx_yo2ov_dt_b_product_details)
 - 1x [2 Pin Terminal Block Connector](https://www.amazon.com/dp/B088LSS14J?psc=1&ref=ppx_yo2ov_dt_b_product_details)
-- 1x [22 Awg Stranded Silicone Wire](https://www.amazon.com/dp/B07G2JWYDW?ref=ppx_yo2ov_dt_b_product_details&th=1)
-- 1x [20 awg Stranded Silicone Wire](https://www.amazon.com/dp/B08F79YG8Q?psc=1&ref=ppx_yo2ov_dt_b_product_details)
-- 1x [18 awg Stranded Silicone Wire 30 ft](https://www.amazon.com/dp/B07FMRDP87?ref=ppx_yo2ov_dt_b_product_details&th=1)
+    - This is a way to connect the 18 AWG power wire up to your Arduino PCB board. It needs to be angled to fit into the +/- channels on the PCB but works well. You also only need one so if you can get away from buying this pack go for it.
+- 1x [22 Awg Stranded Silicone Wire 26 ft 6 Colors](https://www.amazon.com/dp/B07G2JWYDW?ref=ppx_yo2ov_dt_b_product_details&th=1)
+    - This is used for running the main Arduino logic and the long data line to your LED strips.
+- 1x [20 awg Stranded Silicone Wire 23 ft Black and Red](https://www.amazon.com/dp/B08F79YG8Q?psc=1&ref=ppx_yo2ov_dt_b_product_details)
+    - I used this to run the 5V power lines on the Arduino board. This one is probably not necessary but I like to keep a factor of safety when running power from a large transformer.
+- 1x [18 awg Stranded Silicone Wire 30 ft Black and Red](https://www.amazon.com/dp/B07FMRDP87?ref=ppx_yo2ov_dt_b_product_details&th=1)
+    - This is for running power to your LED strips and Arduino. It is probably a bit overkill but keeps the risk of overloading a wire low.
 - 1x [Coarse ~60 Grit Sand Paper](https://www.homedepot.com/p/3M-Pro-Grade-Precision-9-in-x-11-in-60-Grit-Coarse-Faster-Sanding-Sheets-4-Pack-26060PGP-4/313353044)
+    - Many of the mating surfaces are a tight fit and that can be fixed with some sanding.
 - 1x [Hack Saw](https://www.homedepot.com/p/Stanley-6-in-Hack-Saw-STHT14037/311326599)
+    - Needed to cut the main blade tube and the PVC pipe that will be used as a spacer.
+- 1x [PCB Board](https://www.amazon.com/gp/product/B07ZYNWJ1S/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1)
+    - You only need one for this project and the quality of this PCB is perfect for what you will need. Feel free to find another variety.
+- 1x [Solder Iron](https://www.amazon.com/gp/product/B06XFT1TPJ/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
+    - This is a very cheap soldering iron that has everything you need for a project like this. Feel free to find another variety.
 
 #### Nice To Have
 
 - 1x [Dremel Tool Kit](https://www.homedepot.com/p/Dremel-3000-Series-1-2-Amp-Variable-Speed-Corded-Rotary-Tool-Kit-with-25-Accessories-and-Carrying-Case-3000-1-25H/203040434)
+    - This will make your sanding much easier and give you the ability to cut a piece out of your spacer for wire strain relief.
 - 1x [Glue Gun](https://www.amazon.com/Mr-Stick-Crafts-Craft-Sticks/dp/B08BCCS1SN/ref=sr_1_10?c=ts&keywords=Craft+Glue+Guns&qid=1684882690&s=arts-crafts&sr=1-10&ts_id=12898851)
+    - Can be used to help hold the two LED strips together before being inserted into the foam tubing.
 
 ## Technologies
+- 
 
 ## Construction
 
