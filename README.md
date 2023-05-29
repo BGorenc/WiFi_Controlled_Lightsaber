@@ -22,7 +22,7 @@ The objective of this project is to employ an Arduino microcontroller that can w
     - A microcontroller that has built in Wi-Fi capabilities. Can be purchased from other suppliers (DigiKey/Mouser/etc.) and cheaper Arduino clones are available.
 - 2x [WS2812B Led Strip 1 Meter @ 144 leds/meter](https://www.btf-lighting.com/products/ws2812b-led-pixel-strip-30-60-74-96-100-144-pixels-leds-m?variant=25586938511460)
     - This is a well established brand that has great quality control and low prices.
-- 1x [Power Supply 30 Amp](https://www.amazon.com/dp/B0BNQ6Y88J?ref=ppx_yo2ov_dt_b_product_details&th=1)
+- 1x [Power Supply 5v 30 Amp](https://www.amazon.com/dp/B0BNQ6Y88J?ref=ppx_yo2ov_dt_b_product_details&th=1)
     - This transformer will be used to supply the power and amps needed for both LED strips. This power supply will provide a large buffer on your power demands.
 - 1x [Power Supply Outlet Adapter](https://www.amazon.com/dp/B07C9D6CXY?ref=ppx_yo2ov_dt_b_product_details&th=1)
     - The wire needed to connect your power supple to an outlet.
@@ -82,7 +82,14 @@ The objective of this project is to employ an Arduino microcontroller that can w
 <br/>
 
 ## Construction
--
+
+<p>
+  <img src="Images/Circuit_Layout_WiFi_Controlled_Lightsaber.PNG" alt="Circuit" title="Circuit Layout">
+  <em>Circuit used to Control Lightsaber</em>
+</p>
+
+
+- fgfgfg
 
 <br/>
 
