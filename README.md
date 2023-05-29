@@ -89,6 +89,37 @@ The objective of this project is to employ an Arduino microcontroller that can w
 
 ### Blade
 
+<p>
+  <img src="Images/blade_wire_outlet.PNG" alt="Wire Outlet" title="Wire Outlet">
+  <em>Used to hold the foam in place and allow the wires to be accessible</em>
+</p>
+
+<p>
+  <img src="Images/blade_tip_exploded.PNG" alt="Blade Tip" title="Blade Tip">
+  <em>Shows the blade tip and the naked LED that will sit inside of the cavity of the tip</em>
+</p>
+
+<p>
+  <img src="Images/bade_assembled.PNG" alt="Blade Assembled" title="Blade Assembled">
+  <em>Blade fully assembled</em>
+</p>
+
+<p>
+  <img src="Images/hilt_spacer.PNG" alt="Hilt Spacer" title="Hilt Spacer">
+  <em>Used to fill the bottom of the hilt's opening so that the needed wires can be reached when fully assembled</em>
+</p>
+
+<p>
+  <img src="Images/blade_spacer_hilt_exploded.PNG" alt="Exploded View" title="Exploded View">
+  <em>Show how all the parts fit together</em>
+</p>
+
+<p>
+  <img src="Images/blade_spacer_hilt_assembled.PNG" alt="Wire Gap" title="Wire Gap">
+  <em>The wire is ran between the blade and inner diameter of the hilt cavity</em>
+</p>
+
+
 <br/>
 
 ### Circuit
@@ -109,7 +140,9 @@ The importance of having the data line be separate for each LED strip is so that
 
 You should be able to use your Wago Connectors here to connect the power and data line at the Arduino to your power and data lines that will run to the blade of the Lightsaber. Then on the other end of these data and power lines use the Wago connectors to connect to the corresponding JST connector that came with your LED strips. This will leave you with the ability to easily disconnect your components if the need arises.
 
-You will obviously have to think about the wire length you need for your implementation. However, keep in mind your data lines should be kept close to 3 meters or less so you don't suffer weakening the integrity of your signal. 
+You will obviously have to think about the wire length you need for your implementation. However, keep in mind your data lines should be kept close to 3 meters or less so you don't suffer weakening the integrity of your signal.
+
+Finally, don't forget to set up the Kasa plug so the you can remotely turn on and off the power to your Lightsaber. This plug works through both Google Home and Alexa and is pretty intuitive to set up.
 
 <ins>**18 Awg:**</ins>
     - Used to run power to the LED strips and the Arduino
