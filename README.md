@@ -81,12 +81,20 @@ The objective of this project is to employ an Arduino microcontroller that can w
 
 <br/>
 
-## Technologies
-- 
-
 ## Construction
+-
+
+<br/>
+
+## Program
+-
+
+<br/>
 
 ## Operation
+-
+
+<br/>
 
 ## Room for Improvement
 
@@ -98,4 +106,9 @@ The objective of this project is to employ an Arduino microcontroller that can w
 
 - Thing 1
 
+<br/>
+
 ## Resources
+-
+
+<br/>
