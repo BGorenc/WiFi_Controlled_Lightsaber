@@ -101,13 +101,13 @@ You should be able to use your Wago Connectors here to connect the power and dat
 
 You will obviously have to think about the wire length you need for your implementation. However, keep in mind your data lines should be kept close to 3 meters or less so you don't suffer weakening the integrity of your signal. 
 
-<U>**18 Awg:**</U>
+<ins>**18 Awg:**</ins>
     - Used to run power to the LED strips and the Arduino
 
-<U>**20 Awg:**</U>
+<ins>**20 Awg:**</ins>
     - Used to run power across the PCB Board to other components
     
-<U>**22 Awg:**</U>
+<ins>**22 Awg:**</ins>
     - Used to run the data lines across the PCB to other components and to the LED Strips
 
 <br/>
