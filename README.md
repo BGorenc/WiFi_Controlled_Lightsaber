@@ -19,8 +19,8 @@ The objective of this project is to employ an Arduino microcontroller that can w
 
 #### Electronics
 - 1x [Arduino Nano 33 IoT](https://store-usa.arduino.cc/products/arduino-nano-33-iot)
-    - A microcontroller that has built in Wi-Fi capabilities.
-- 2x [1 Meter WS2812B Led Strip 144 leds/meter](https://www.btf-lighting.com/products/ws2812b-led-pixel-strip-30-60-74-96-100-144-pixels-leds-m?variant=25586938511460)
+    - A microcontroller that has built in Wi-Fi capabilities. Can be purchased from other suppliers (DigiKey/Mouser/etc.) and cheaper Arduino clones are available.
+- 2x [WS2812B Led Strip 1 Meter @ 144 leds/meter](https://www.btf-lighting.com/products/ws2812b-led-pixel-strip-30-60-74-96-100-144-pixels-leds-m?variant=25586938511460)
     - This is a well established brand that has great quality control and low prices.
 - 1x [Power Supply 30 Amp](https://www.amazon.com/dp/B0BNQ6Y88J?ref=ppx_yo2ov_dt_b_product_details&th=1)
     - This transformer will be used to supply the power and amps needed for both LED strips. This power supply will provide a large buffer on your power demands.
@@ -70,16 +70,16 @@ The objective of this project is to employ an Arduino microcontroller that can w
     - This is a very cheap soldering iron that has everything you need for a project like this. Feel free to find another variety.
 
 #### Nice To Have
-
 - 1x [Dremel Tool Kit](https://www.homedepot.com/p/Dremel-3000-Series-1-2-Amp-Variable-Speed-Corded-Rotary-Tool-Kit-with-25-Accessories-and-Carrying-Case-3000-1-25H/203040434)
     - This will make your sanding much easier and give you the ability to cut a piece out of your spacer for wire strain relief.
 - 1x [Glue Gun](https://www.amazon.com/Mr-Stick-Crafts-Craft-Sticks/dp/B08BCCS1SN/ref=sr_1_10?c=ts&keywords=Craft+Glue+Guns&qid=1684882690&s=arts-crafts&sr=1-10&ts_id=12898851)
     - Can be used to help hold the two LED strips together before being inserted into the foam tubing.
-
 - 1x [Light Saber Wall Mount Upper Hilt and Blade Support](https://www.amazon.com/dp/B07DLXKMJX?psc=1&ref=ppx_yo2ov_dt_b_product_details)
     - I made two lightsabers and displayed them crossed this was one of the set of mounts needed.
 - 1x [Light Saber Wall Mount Base Support](https://www.amazon.com/dp/B0B7D3ST7C?psc=1&ref=ppx_yo2ov_dt_b_product_details)
     - I made two lightsabers and displayed them crossed this was one of the set of mounts needed.
+
+<br/>
 
 ## Technologies
 - 
