@@ -9,8 +9,10 @@ The objective of this project is to employ an Arduino microcontroller that can w
     - [Lightsaber](#lightsaber)
     - [General Tools](#general-tools)
     - [Nice To Have](#nice-to-have)
-- [Technologies](#technologies)
 - [Construction](#construction)
+    - [Blade](#blade)
+    - [Circuit](#circuit)
+- [Program](#program)
 - [Operation](#operation)
 - [Room for Improvement](#room-for-improvement)
 - [Resources](#resources)
@@ -84,6 +86,14 @@ The objective of this project is to employ an Arduino microcontroller that can w
 <br/>
 
 ## Construction
+
+### Blade
+
+<br/>
+
+### Circuit
+
+<br/>
 
 <p>
   <img src="Images/Circuit_Layout_WiFi_Controlled_Lightsaber.PNG" alt="Circuit" title="Circuit Layout">
