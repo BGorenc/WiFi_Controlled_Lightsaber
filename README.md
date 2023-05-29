@@ -50,7 +50,7 @@ The objective of this project is to employ an Arduino microcontroller that can w
     - I'm using a the hilt of a Lightsaber from Disneyland specifically *Savi's Workshop*. However you can make a hilt with some simple plumbing supplies from a hardware store. There are plenty of guides on the web just be sure you leave enough gap between your blade and hilt to run some wiring or find a way to run the wire out another opening of the hilt.
 
 #### General Tools
-- 1x [WAGO Connectors 6 or More](https://www.amazon.com/dp/B0BKR2SR7H?psc=1&ref=ppx_yo2ov_dt_b_product_details)
+- 1x [WAGO Connectors 12 or More](https://www.amazon.com/dp/B0BKR2SR7H?psc=1&ref=ppx_yo2ov_dt_b_product_details)
     - Connectors for either testing a set up or can be a permanent solution 
 - 1x [2 Pin Terminal Block Connector](https://www.amazon.com/dp/B088LSS14J?psc=1&ref=ppx_yo2ov_dt_b_product_details)
     - This is a way to connect the 18 AWG power wire up to your Arduino PCB board. It needs to be angled to fit into the +/- channels on the PCB but works well. You also only need one so if you can get away from buying this pack go for it.
@@ -68,6 +68,8 @@ The objective of this project is to employ an Arduino microcontroller that can w
     - You only need one for this project and the quality of this PCB is perfect for what you will need. Feel free to find another variety.
 - 1x [Solder Iron](https://www.amazon.com/gp/product/B06XFT1TPJ/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
     - This is a very cheap soldering iron that has everything you need for a project like this. Feel free to find another variety.
+- 1x [Wire Stripper](https://www.amazon.com/gp/product/B000JNNWQ2/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
+    - A decent wire stripper will be essential, just make sure it can cut the 22,20 and 18 awg wire needed for this project.
 
 #### Nice To Have
 - 1x [Dremel Tool Kit](https://www.homedepot.com/p/Dremel-3000-Series-1-2-Amp-Variable-Speed-Corded-Rotary-Tool-Kit-with-25-Accessories-and-Carrying-Case-3000-1-25H/203040434)
@@ -89,7 +91,24 @@ The objective of this project is to employ an Arduino microcontroller that can w
 </p>
 
 
-- fgfgfg
+The circuit is showing two data lines from Pins 2 and 3 which both require a 220 ohm resistor. The data line leaving the Arduino Nano 33 IoT has a voltage of ~ 3.3v and needs to be stepped up to 5v for the WS2812B LED Strip. This is where the bidirectional Logic Level Shifter comes into play. We can pass the data line through the LVx channel and out of the corresponding HVx channel (ie. LV1 -> HV1). To do this the shifter needs reference voltages and the shared ground. The Pin marked just LV will be our 3.3v reference which is fed through the 3.3v power pin on the Arduino. Then from the power supply we can use the 5v as a reference by feeding it into the HV Pin. It is important to use the same ground for all components.
+
+All this being said, please note that it is ok to power the Arduino Nano 33 IoT with a 5v power supply because this Arduino makes use of an onboard voltage regulator to adjust the power to the 3.3v needed for the board. Also not shown here is the use of the 2 pin terminal block. This is need to easily connect the 18 awg wire to the circuit board. **The 2 pin terminal block will need to be angled on the positive and negative strips of the board you are soldering to**. This is a minor issue and should give you no complications other than being moderately unpleasing to look at.
+
+The importance of having the data line be separate for each LED strip is so that we can preserve a strong signal. If we split a single signal, when the LEDs heat up we will end up with intermittent signal integrity on the LED strips. This will yield unintended results.
+
+You should be able to use your Wago Connectors here to connect the power and data line at the Arduino to your power and data lines that will run to the blade of the Lightsaber. Then on the other end of these data and power lines use the Wago connectors to connect to the corresponding JST connector that came with your LED strips. This will leave you with the ability to easily disconnect your components if the need arises.
+
+You will obviously have to think about the wire length you need for your implementation. However, keep in mind your data lines should be kept close to 3 meters or less so you don't suffer weakening the integrity of your signal. 
+
+<U>**18 Awg:**</U>
+    - Used to run power to the LED strips and the Arduino
+
+<U>**20 Awg:**</U>
+    - Used to run power across the PCB Board to other components
+    
+<U>**22 Awg:**</U>
+    - Used to run the data lines across the PCB to other components and to the LED Strips
 
 <br/>
 
