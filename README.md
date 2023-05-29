@@ -30,8 +30,8 @@ The objective of this project is to employ an Arduino microcontroller that can w
     - This allows you to power the lightsaber on at the power source using your voice through Google Home or Alexa. Alternatively, you can use the native Kasa App.
 - 1x [Logic Level Shifter Bi-Directional 3.3V-5V](https://www.amazon.com/dp/B07F7W91LC?psc=1&ref=ppx_yo2ov_dt_b_product_details)
     - This allows us to step up the 3.3v signal from the Arduino Nano to the expected 5v signal for the WS2812B Led Strips.
-- 1x [220 ohm Resistor](https://www.google.com/search?q=220+ohm+resistor)
-    - Needed to limit the current flowing through the circuit and prevents damaging the Arduino or LEDs. Many options available for purchase.
+- 2x [220 ohm Resistor](https://www.google.com/search?q=220+ohm+resistor)
+    - Needed to limit the current flowing out of each data pin through the circuit, prevents damaging the Arduino and LEDs. Many options available for purchase.
 - 1x [100 uf Capacitor](https://www.arduino.cc/documents/datasheets/cap100uF.pdf)
     - This serves as a way to maintain a constant power supply. Many options available for purchase.
 
