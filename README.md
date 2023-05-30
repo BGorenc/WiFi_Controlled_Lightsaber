@@ -72,55 +72,18 @@ The objective of this project is to employ an Arduino microcontroller that can w
     - This is a very cheap soldering iron that has everything you need for a project like this. Feel free to find another variety.
 - 1x [Wire Stripper](https://www.amazon.com/gp/product/B000JNNWQ2/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
     - A decent wire stripper will be essential, just make sure it can cut the 22,20 and 18 awg wire needed for this project.
+- 1x [Light Saber Wall Mount Base Support](https://www.google.com/search?q=light+saber+display)
+    - The mount you use is important because of the way this is constructed. You will want a mount that has 3 points of contact with your lightsaber. Two of those points should be on the hilt, one on the top portion and one on the bottom portion. The blade is light so a single support will work for that. Just be sure to properly support the hilt.
 
 #### Nice To Have
 - 1x [Dremel Tool Kit](https://www.homedepot.com/p/Dremel-3000-Series-1-2-Amp-Variable-Speed-Corded-Rotary-Tool-Kit-with-25-Accessories-and-Carrying-Case-3000-1-25H/203040434)
     - This will make your sanding much easier and give you the ability to cut a piece out of your spacer for wire strain relief.
 - 1x [Glue Gun](https://www.amazon.com/Mr-Stick-Crafts-Craft-Sticks/dp/B08BCCS1SN/ref=sr_1_10?c=ts&keywords=Craft+Glue+Guns&qid=1684882690&s=arts-crafts&sr=1-10&ts_id=12898851)
     - Can be used to help hold the two LED strips together before being inserted into the foam tubing.
-- 1x [Light Saber Wall Mount Upper Hilt and Blade Support](https://www.amazon.com/dp/B07DLXKMJX?psc=1&ref=ppx_yo2ov_dt_b_product_details)
-    - I made two lightsabers and displayed them crossed this was one of the set of mounts needed.
-- 1x [Light Saber Wall Mount Base Support](https://www.amazon.com/dp/B0B7D3ST7C?psc=1&ref=ppx_yo2ov_dt_b_product_details)
-    - I made two lightsabers and displayed them crossed this was one of the set of mounts needed.
 
 <br/>
 
 ## Construction
-
-### Blade
-
-<p>
-  <img src="Images/blade_wire_outlet.PNG" alt="Wire Outlet" title="Wire Outlet">
-  <em>Used to hold the foam in place and allow the wires to be accessible</em>
-</p>
-
-<p>
-  <img src="Images/blade_tip_exploded.PNG" alt="Blade Tip" title="Blade Tip">
-  <em>Shows the blade tip and the naked LED that will sit inside of the cavity of the tip</em>
-</p>
-
-<p>
-  <img src="Images/bade_assembled.PNG" alt="Blade Assembled" title="Blade Assembled">
-  <em>Blade fully assembled</em>
-</p>
-
-<p>
-  <img src="Images/hilt_spacer.PNG" alt="Hilt Spacer" title="Hilt Spacer">
-  <em>Used to fill the bottom of the hilt's opening so that the needed wires can be reached when fully assembled</em>
-</p>
-
-<p>
-  <img src="Images/blade_spacer_hilt_exploded.PNG" alt="Exploded View" title="Exploded View">
-  <em>Show how all the parts fit together</em>
-</p>
-
-<p>
-  <img src="Images/blade_spacer_hilt_assembled.PNG" alt="Wire Gap" title="Wire Gap">
-  <em>The wire is ran between the blade and inner diameter of the hilt cavity</em>
-</p>
-
-
-<br/>
 
 ### Circuit
 
@@ -152,6 +115,63 @@ Finally, don't forget to set up the Kasa plug so the you can remotely turn on an
     
 <ins>**22 Awg:**</ins>
     - Used to run the data lines across the PCB to other components and to the LED Strips
+
+<br/>
+
+### Blade
+
+Building the blade probably requires the most manual labor out of the entire project. Before getting started you will want to test out these LED strips with the circuit you just built. There will be a JST connector on both ends and you need to remove one of them on each strip. I would also recommend cutting the power injection cables (The wires not in a JST connector) as short as possible so they are out of the way.
+
+Then the first tedious task is to insert the LED strips into the foam tube. The LED strips should come with double sided tape and can be used to affix the LED strips together back to back. It just has to hold long enough to get the LEDs into the foam tube. You can cut the very corners of the LED you plan to put in the blade to make inserting them a little easier. There really is no magic formula to getting the LEDs into the foam tubing. It just takes time and patience and be sure to flatten the foam tube as you push the LED strips along to help get them through.
+
+<p>
+  <img src="Images/blade_tip_exploded.PNG" alt="Blade Tip" title="Blade Tip">
+  <em>Shows the blade tip and the naked LED that will sit inside of the cavity of the tip</em>
+</p>
+
+Now you will want to have a bit of the end of the LED strip to have an exposed LED that will fit in the tip. This is where you will need to do some sanding in two places. 
+1. The mating surfaces of the blade and tip are too tight to press together. I suggest taking the sand paper or Dremel to the inner diameter of the blade. Careful not to overdo it so that you have a nice snug fit.
+2. The second place is the inner diameter of the blade tip. There is not enough clearance to get the LED inside the tip. This is in my opinion the most annoying part of the project to do if you are not using a Dremel. But just work at it and get enough room that the exposed LED will easily slide in and out of the tip.
+
+At this point you will want to assemble the blade tip in what will be your final configuration. Use this set up to make a mark where you will cut off the excess blade. The blade is translucent enough to see where everything is sitting inside and keep in mind the plug on the other end will sit slightly recessed around the press fit area. After you have your length marked, disassemble the blade so you can use the hack saw to cut off the excess blade. Be sure to sand down the edge and remove any sharp points.
+
+<p>
+  <img src="Images/blade_wire_outlet.PNG" alt="Wire Outlet" title="Wire Outlet">
+  <em>Used to hold the foam in place and allow the wires to be accessible</em>
+</p>
+
+At this point you will will have the same issue as before with the tip. The mating surfaces of the blade and outlet plug are too tight. So you will have to sand down the mating surface of the blade until you get a nice snug fit between the two components.
+
+<p>
+  <img src="Images/bade_assembled.PNG" alt="Blade Assembled" title="Blade Assembled">
+  <em>Blade fully assembled</em>
+</p>
+
+Here you should be able to assemble the blade for the final time. Feed the JST connectors through the Outlet Plug and the blade is ready to use.
+
+<p>
+  <img src="Images/hilt_spacer.PNG" alt="Hilt Spacer" title="Hilt Spacer">
+  <em>Used to fill the bottom of the hilt's opening so that the needed wires can be reached when fully assembled</em>
+</p>
+
+Now that the blade is fully assembled we need to ensure that the blade doesn't bottom out in the hilt. To do this we will need a spacer made out of the PVC pipe. Your goal is to leave enough wire so that you can run the JST connector through the gap between the inner diameter of the Hilt and the outer diameter of the Blade but still have enough wire to work with with when interconnecting with the Arduino. You will need to balance this with enough of the blade remaining in the hilt as well as this point will act as a bit of a support for your final display.
+
+Once you found that magic amount you can use the hacksaw again to cut your pvc piece to length. Then you will want to cut a bit of a notch to act as a strain relief for the wire to run through. If you are not using a Dremel you can cut a V shape which will serve the same purpose as the one pictured. Be sure to sand down all the edges so that there are no sharp corners.
+
+<p>
+  <img src="Images/blade_spacer_hilt_exploded.PNG" alt="Exploded View" title="Exploded View">
+  <em>Show how all the parts fit together</em>
+</p>
+
+This exploded view should be enough to show you how the assembly will go together. You may want to use some tape so that the spacer stays orientated correctly in reference to the blade. Just don't go overboard with the tape.
+
+<p>
+  <img src="Images/blade_spacer_hilt_assembled.PNG" alt="Wire Gap" title="Wire Gap">
+  <em>The wire is ran between the blade and inner diameter of the hilt cavity</em>
+</p>
+
+If at this point you feel the wire is too long or not long enough feel free to start with a new spacer. You should have a lot of left over PVC available to experiment with.
+
 
 <br/>
 
