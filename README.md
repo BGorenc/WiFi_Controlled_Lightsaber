@@ -176,7 +176,12 @@ If at this point you feel the wire is too long or not long enough feel free to s
 <br/>
 
 ## Program
--
+
+> It is important to note that this arduino can not connect to 5 GHz Wi-Fi frequency and will need a 2.4 GHz signal to operate.
+
+The program has two files. The first file is **arduino_secrets.h**. This file is used to enter your network SSID and Password. The file is not tracked in the repository for what should be obvious reasons. It is an attempt to decouple your network name and password from the code it self.
+
+The next file where the brunt of everything happens is the **arduino_controller.ino** file.
 
 <br/>
 
