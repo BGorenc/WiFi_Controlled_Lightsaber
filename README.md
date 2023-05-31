@@ -181,12 +181,31 @@ If at this point you feel the wire is too long or not long enough feel free to s
 
 The program has two files. The first file is **arduino_secrets.h**. This file is used to enter your network SSID and Password. The file is not tracked in the repository for what should be obvious reasons. It is an attempt to decouple your network name and password from the code it self.
 
-The next file where the brunt of everything happens is the **arduino_controller.ino** file.
+The next file where the brunt of everything happens is the **arduino_controller.ino** file. This file makes use of 3 libraries.
+
+1. **SPI.h:** Enables Serial Peripheral Interface (SPI) communication. This communication is used in the WiFiNINA library and is essentially a dependency even though it is not invoked directly in the code.
+2. **WiFiNINA.h:** Provides WiFi functionality for connecting to networks and hosting the small server used to control the Arduino.
+3. **FastLED.h:** Controls the WS2812B LED strips gives the capability to change colors and turning LED strips on/off.
+
+The program uses the FastLED library to control the WS2812B LED strips. The LED strips are connected to the Arduino Nano 33 IoT board, with one strip connected to the DATA_PIN and the other strip connected to DATA_PIN_CLONE. The program supports a single lightsaber with two identical LED strips.
+
+When powered on in the setup() section the program initializes the LED strips, sets the brightness and power limits, and starts the serial communication. However, the most critical component is setting the IP address of the Arduino, otherwise you won't know the IP of your Arduino.Even if you went through the trouble of figuring it out there is no guarantee your router will always assign the same IP. Once these steps are done, tt then attempts to connect to the configured WiFi network using the WiFiNINA module. Once connected, it starts a server on port 80 to host a small simple web interface accessible by placing the IP address you set into the URL of any browser on the same network.
+
+The web interface allows users to control the lightsaber. When a client connects to the server, the program checks for incoming data. If there is data available, it reads the data and processes the commands. The program interprets the received commands and performs the corresponding actions to control the lightsaber's state and color. This is done through the use of simple GET requests that are submitted through a form from the client.
+
+The web interface displays a selection of colors and an option to turn off the lightsaber and can be easily customized. When a user selects a color or the turn off option and submits the form, the program updates the LED strips accordingly.
 
 <br/>
 
 ## Operation
--
+
+1. Connect the WS2812B LED strips to the DATA_PIN and DATA_PIN_CLONE pins defined in the code.
+2. Adjust the LED strip setup values according to your specific configuration (number of LEDs, chip set, color order, brightness, maximum voltage, maximum amps, and IP Address).
+3. Modify the arduino_secrets.h file to include your network's SSID and password for WiFi connection.
+4. Upload the code to the Arduino Nano 33 IoT board.
+
+
+TODO ADD IMAGE OF WEBPAGE
 
 <br/>
 
@@ -194,15 +213,21 @@ The next file where the brunt of everything happens is the **arduino_controller.
 
 **Improvement:**
 
-- Thing 1
+- Add randomized effects
+- Add holiday based effects
+- Potentially add a pulsing effect, may be limited by the single core of the Arduino that does not allow for multithreading.
 
 **To Do:**
 
-- Thing 1
+- Clean up the code
+- Speed up the lighting animation, it is a bit too slow for my liking. Possible to light more than one LED at a time.
 
 <br/>
 
-## Resources
--
+## Free Use
+
+Feel free to customize the code and web interface to suit your specific requirements or make any improvements and PRs. Enjoy controlling your lightsaber remotely!
+
+TODO add image of final product
 
 <br/>
