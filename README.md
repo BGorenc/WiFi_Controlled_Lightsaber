@@ -92,7 +92,7 @@ The objective of this project is to employ an Arduino microcontroller that can w
 <div style="text-align: center;">
   <img src="Images/Circuit_Layout_WiFi_Controlled_Lightsaber.PNG" alt="Circuit Layout" title="Circuit Layout" class="center">
   <p style="margin-top: 10px; text-align: left;">
-    <em>Circuit used to Control Lightsaber</em>
+    <em>Fig.1 - Circuit used to Control Lightsaber</em>
   </p>
 </div>
 
@@ -129,7 +129,7 @@ Then the first tedious task is to insert the LED strips into the foam tube. The 
 <div style="text-align: center;">
   <img src="Images/blade_tip_exploded.PNG" alt="Blade Tip" title="Blade Tip" class="center">
   <p style="margin-top: 10px; text-align: left;">
-    <em>Shows the blade tip and the naked LED that will sit inside of the cavity of the tip</em>
+    <em>Fig.2 - Shows the blade tip and the naked LED that will sit inside of the cavity of the tip</em>
   </p>
 </div>
 
@@ -142,7 +142,7 @@ At this point you will want to assemble the blade tip in what will be your final
 <div style="text-align: center;">
   <img src="Images/blade_wire_outlet.PNG" alt="Wire Outlet" title="Wire Outlet" class="center">
   <p style="margin-top: 10px; text-align: left;">
-    <em>Used to hold the foam in place and allow the wires to be accessible</em>
+    <em>Fig.3 - Used to hold the foam in place and allow the wires to be accessible</em>
   </p>
 </div>
 
@@ -151,7 +151,7 @@ At this point you will will have the same issue as before with the tip. The mati
 <div style="text-align: center;">
   <img src="Images/bade_assembled.PNG" alt="Blade Assembled" title="Blade Assembled" class="center">
   <p style="margin-top: 10px; text-align: left;">
-    <em>Blade fully assembled</em>
+    <em>Fig.4 - Blade fully assembled</em>
   </p>
 </div>
 
@@ -160,7 +160,7 @@ Here you should be able to assemble the blade for the final time. Feed the JST c
 <div style="text-align: center;">
   <img src="Images/hilt_spacer.PNG" alt="Hilt Spacer" title="Hilt Spacer" class="center">
   <p style="margin-top: 10px; text-align: left;">
-    <em>Used to fill the bottom of the hilt's opening so that the needed wires can be reached when fully assembled</em>
+    <em>Fig.5 - Used to fill the bottom of the hilt's opening so that the needed wires can be reached when fully assembled</em>
   </p>
 </div>
 
@@ -171,7 +171,7 @@ Once you found that magic amount you can use the hacksaw again to cut your pvc p
 <div style="text-align: center;">
   <img src="Images/blade_spacer_hilt_exploded.PNG" alt="Exploded View" title="Exploded View" class="center">
   <p style="margin-top: 10px; text-align: left;">
-    <em>Show how all the parts fit together</em>
+    <em>Fig.6 - Show how all the parts fit together</em>
   </p>
 </div>
 
@@ -181,7 +181,7 @@ This exploded view should be enough to show you how the assembly will go togethe
 <div style="text-align: center;">
   <img src="Images/blade_spacer_hilt_assembled.PNG" alt="Wire Gap" title="Wire Gap" class="center">
   <p style="margin-top: 10px; text-align: left;">
-    <em>The wire is ran between the blade and inner diameter of the hilt cavity</em>
+    <em>Fig.7 - The wire is ran between the blade and inner diameter of the hilt cavity</em>
   </p>
 </div>
 
