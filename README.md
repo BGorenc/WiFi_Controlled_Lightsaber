@@ -241,7 +241,7 @@ TODO ADD IMAGE OF WEBPAGE
 
 ## Open Source
 
-Feel free to customize the code and web interface to suit your specific requirements or make any improvements and PRs. Enjoy controlling your lightsaber remotely!
+You are encouraged to modify and enhance the code and web interface according to your specific needs. Feel free to customize it, make improvements, and submit pull requests (PRs) if you would like to contribute your changes. This project is open source on GitHub, and your contributions are welcome. Enjoy controlling your lightsaber remotely!
 
 TODO add image of final product
 
