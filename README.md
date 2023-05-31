@@ -15,7 +15,7 @@ The objective of this project is to employ an Arduino microcontroller that can w
 - [Program](#program)
 - [Operation](#operation)
 - [Room for Improvement](#room-for-improvement)
-- [Resources](#resources)
+- [Open Source](#open-source)
 
 ## Parts List
 
@@ -224,7 +224,7 @@ TODO ADD IMAGE OF WEBPAGE
 
 <br/>
 
-## Free Use
+## Open Source
 
 Feel free to customize the code and web interface to suit your specific requirements or make any improvements and PRs. Enjoy controlling your lightsaber remotely!
 
