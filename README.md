@@ -90,7 +90,7 @@ The objective of this project is to employ an Arduino microcontroller that can w
 <br/>
 
 <div style="text-align: center;">
-  <img src="Images/Circuit_Layout_WiFi_Controlled_Lightsaber.PNG" alt="Circuit Layout" title="Circuit Layout">
+  <img src="Images/Circuit_Layout_WiFi_Controlled_Lightsaber.PNG" alt="Circuit Layout" title="Circuit Layout" style="display: block; margin: 0 auto;">
   <p style="margin-top: 10px; text-align: left;">
     <em>Circuit used to Control Lightsaber</em>
   </p>
@@ -127,7 +127,7 @@ Building the blade probably requires the most manual labor out of the entire pro
 Then the first tedious task is to insert the LED strips into the foam tube. The LED strips should come with double sided tape and can be used to affix the LED strips together back to back. It just has to hold long enough to get the LEDs into the foam tube. You can cut the very corners of the LED you plan to put in the blade to make inserting them a little easier. There really is no magic formula to getting the LEDs into the foam tubing. It just takes time and patience and be sure to flatten the foam tube as you push the LED strips along to help get them through.
 
 <div style="text-align: center;">
-  <img src="Images/blade_tip_exploded.PNG" alt="Blade Tip" title="Blade Tip">
+  <img src="Images/blade_tip_exploded.PNG" alt="Blade Tip" title="Blade Tip" style="display: block; margin: 0 auto;">
   <p style="margin-top: 10px; text-align: left;">
     <em>Shows the blade tip and the naked LED that will sit inside of the cavity of the tip</em>
   </p>
@@ -140,7 +140,7 @@ Now you will want to have a bit of the end of the LED strip to have an exposed L
 At this point you will want to assemble the blade tip in what will be your final configuration. Use this set up to make a mark where you will cut off the excess blade. The blade is translucent enough to see where everything is sitting inside and keep in mind the plug on the other end will sit slightly recessed around the press fit area. After you have your length marked, disassemble the blade so you can use the hack saw to cut off the excess blade. Be sure to sand down the edge and remove any sharp points.
 
 <div style="text-align: center;">
-  <img src="Images/blade_wire_outlet.PNG" alt="Wire Outlet" title="Wire Outlet">
+  <img src="Images/blade_wire_outlet.PNG" alt="Wire Outlet" title="Wire Outlet" style="display: block; margin: 0 auto;">
   <p style="margin-top: 10px; text-align: left;">
     <em>Used to hold the foam in place and allow the wires to be accessible</em>
   </p>
@@ -149,7 +149,7 @@ At this point you will want to assemble the blade tip in what will be your final
 At this point you will will have the same issue as before with the tip. The mating surfaces of the blade and outlet plug are too tight. So you will have to sand down the mating surface of the blade until you get a nice snug fit between the two components.
 
 <div style="text-align: center;">
-  <img src="Images/bade_assembled.PNG" alt="Blade Assembled" title="Blade Assembled">
+  <img src="Images/bade_assembled.PNG" alt="Blade Assembled" title="Blade Assembled" style="display: block; margin: 0 auto;">
   <p style="margin-top: 10px; text-align: left;">
     <em>Blade fully assembled</em>
   </p>
@@ -158,7 +158,7 @@ At this point you will will have the same issue as before with the tip. The mati
 Here you should be able to assemble the blade for the final time. Feed the JST connectors through the Outlet Plug and the blade is ready to use.
 
 <div style="text-align: center;">
-  <img src="Images/hilt_spacer.PNG" alt="Hilt Spacer" title="Hilt Spacer">
+  <img src="Images/hilt_spacer.PNG" alt="Hilt Spacer" title="Hilt Spacer" style="display: block; margin: 0 auto;">
   <p style="margin-top: 10px; text-align: left;">
     <em>Used to fill the bottom of the hilt's opening so that the needed wires can be reached when fully assembled</em>
   </p>
@@ -169,7 +169,7 @@ Now that the blade is fully assembled we need to ensure that the blade doesn't b
 Once you found that magic amount you can use the hacksaw again to cut your pvc piece to length. Then you will want to cut a bit of a notch to act as a strain relief for the wire to run through. If you are not using a Dremel you can cut a V shape which will serve the same purpose as the one pictured. Be sure to sand down all the edges so that there are no sharp corners.
 
 <div style="text-align: center;">
-  <img src="Images/blade_spacer_hilt_exploded.PNG" alt="Exploded View" title="Exploded View">
+  <img src="Images/blade_spacer_hilt_exploded.PNG" alt="Exploded View" title="Exploded View" style="display: block; margin: 0 auto;">
   <p style="margin-top: 10px; text-align: left;">
     <em>Show how all the parts fit together</em>
   </p>
@@ -179,7 +179,7 @@ This exploded view should be enough to show you how the assembly will go togethe
 
 
 <div style="text-align: center;">
-  <img src="Images/blade_spacer_hilt_assembled.PNG" alt="Wire Gap" title="Wire Gap">
+  <img src="Images/blade_spacer_hilt_assembled.PNG" alt="Wire Gap" title="Wire Gap" style="display: block; margin: 0 auto;">
   <p style="margin-top: 10px; text-align: left;">
     <em>The wire is ran between the blade and inner diameter of the hilt cavity</em>
   </p>
