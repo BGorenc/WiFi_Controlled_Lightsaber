@@ -28,8 +28,6 @@ The objective of this project is to employ an Arduino microcontroller that can w
     - This transformer will be used to supply the power and amps needed for both LED strips. This power supply will provide a large buffer on your power demands.
 - 1x [Power Supply Outlet Adapter](https://www.amazon.com/dp/B07C9D6CXY?ref=ppx_yo2ov_dt_b_product_details&th=1)
     - The wire needed to connect your power supple to an outlet.
-- 1x [Kasa Smart Plug](https://www.amazon.com/dp/B07RCNB2L3?psc=1&ref=ppx_yo2ov_dt_b_product_details)
-    - This allows you to power the lightsaber on at the power source using your voice through Google Home or Alexa. Alternatively, you can use the native Kasa App.
 - 1x [Logic Level Shifter Bi-Directional 3.3V-5V](https://www.amazon.com/dp/B07F7W91LC?psc=1&ref=ppx_yo2ov_dt_b_product_details)
     - This allows us to step up the 3.3v signal from the Arduino Nano to the expected 5v signal for the WS2812B Led Strips.
 - 2x [220 ohm Resistor](https://www.google.com/search?q=220+ohm+resistor)
@@ -80,6 +78,8 @@ The objective of this project is to employ an Arduino microcontroller that can w
     - This will make your sanding much easier and give you the ability to cut a piece out of your spacer for wire strain relief.
 - 1x [Glue Gun](https://www.amazon.com/Mr-Stick-Crafts-Craft-Sticks/dp/B08BCCS1SN/ref=sr_1_10?c=ts&keywords=Craft+Glue+Guns&qid=1684882690&s=arts-crafts&sr=1-10&ts_id=12898851)
     - Can be used to help hold the two LED strips together before being inserted into the foam tubing.
+- 1x [Kasa Smart Plug](https://www.amazon.com/dp/B07RCNB2L3?psc=1&ref=ppx_yo2ov_dt_b_product_details)
+    - This allows you to power the lightsaber on at the power source using your voice through Google Home or Alexa. Alternatively, you can use the native Kasa App.
 
 <br/>
 
@@ -218,9 +218,16 @@ The web interface displays a selection of colors and an option to turn off the l
 2. Adjust the LED strip setup values according to your specific configuration (number of LEDs, chip set, color order, brightness, maximum voltage, maximum amps, and IP Address).
 3. Modify the arduino_secrets.h file to include your network's SSID and password for WiFi connection.
 4. Upload the code to the Arduino Nano 33 IoT board.
+5. Use the web interface to control your lightsabers from the dropdown menu like in Fig.8 below.
 
+<br/>
 
-TODO ADD IMAGE OF WEBPAGE
+<div style="text-align: center;">
+  <img src="Images/web_page_example.PNG" alt="Web Interface" title="Web Interface" class="center">
+  <p style="margin-top: 10px; text-align: left;">
+    <em>Fig.8 - Example of the web interface used to control the lightsabers</em>
+  </p>
+</div>
 
 <br/>
 
