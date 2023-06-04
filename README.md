@@ -71,7 +71,7 @@ The objective of this project is to employ an Arduino microcontroller that can w
 - 1x [Wire Stripper](https://www.amazon.com/gp/product/B000JNNWQ2/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
     - A decent wire stripper will be essential, just make sure it can cut the 22,20 and 18 awg wire needed for this project.
 - 1x [Light Saber Wall Mount Base Support](https://www.google.com/search?q=light+saber+display)
-    - The mount you use is important because of the way this is constructed. You will want a mount that has 3 points of contact with your lightsaber. Two of those points should be on the hilt, one on the top portion and one on the bottom portion. The blade is light so a single support will work for that. Just be sure to properly support the hilt.
+    - Many options available I heavily modified the one I used with a Dremel tool. **The mount you use is important because this lightsaber is constructed in a way that the blade only *rests* (doesn't "snap" together) in the hilt so it can easily be dismantled.** You will want a mount that has 3 points of contact with your lightsaber. Two of those points should be on the hilt, one on the top portion and one on the bottom portion. The blade is light so a single support will work for that. Just be sure to properly support the hilt.
 
 #### Nice To Have
 - 1x [Dremel Tool Kit](https://www.homedepot.com/p/Dremel-3000-Series-1-2-Amp-Variable-Speed-Corded-Rotary-Tool-Kit-with-25-Accessories-and-Carrying-Case-3000-1-25H/203040434)
@@ -80,6 +80,8 @@ The objective of this project is to employ an Arduino microcontroller that can w
     - Can be used to help hold the two LED strips together before being inserted into the foam tubing.
 - 1x [Kasa Smart Plug](https://www.amazon.com/dp/B07RCNB2L3?psc=1&ref=ppx_yo2ov_dt_b_product_details)
     - This allows you to power the lightsaber on at the power source using your voice through Google Home or Alexa. Alternatively, you can use the native Kasa App.
+- 1x [Cord Covers](https://www.amazon.com/dp/B08MT3ZXSD?psc=1&ref=ppx_yo2ov_dt_b_product_details)
+    - Hide your loose wires so the final product looks more appealing when mounted. To fully hide the wires I replaced some of the WAGO connectors with a solder connection and shrink tubing, attaching the JST connector that was removed from the tip end of the LED strips.
 
 <br/>
 
@@ -231,6 +233,15 @@ The web interface displays a selection of colors and an option to turn off the l
 
 <br/>
 
+<br/>
+
+<div style="text-align: center;">
+  <img src="Images/Final_Product_2_Lightsabers.PNG" alt="Final Product" title="Final Product" class="center">
+  <p style="margin-top: 10px; text-align: left;">
+    <em>Fig.9 - 2 lightsabers using this method mounted</em>
+  </p>
+</div>
+
 ## Room for Improvement
 
 **Improvement:**
@@ -241,15 +252,14 @@ The web interface displays a selection of colors and an option to turn off the l
 
 **To Do:**
 
-- Clean up the code
-- Speed up the lighting animation, it is a bit too slow for my liking. Possible to light more than one LED at a time.
+- TODO Clean up the code
+- TODO Add reconnect function for dropped connections
+- TODO Speed up the lighting animation, it is a bit too slow for my liking. Possible to light more than one LED at a time.
 
 <br/>
 
 ## Open Source
 
 You are encouraged to modify and enhance the code and web interface according to your specific needs. Feel free to customize it, make improvements, and submit pull requests (PRs) if you would like to contribute your changes. This project is open source on GitHub, and your contributions are welcome. Enjoy controlling your lightsaber remotely!
-
-TODO add image of final product
 
 <br/>
