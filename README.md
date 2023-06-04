@@ -220,7 +220,7 @@ The web interface displays a selection of colors and an option to turn off the l
 2. Adjust the LED strip setup values according to your specific configuration (number of LEDs, chip set, color order, brightness, maximum voltage, maximum amps, and IP Address).
 3. Modify the arduino_secrets.h file to include your network's SSID and password for WiFi connection.
 4. Upload the code to the Arduino Nano 33 IoT board.
-5. Use the web interface to control your lightsabers from the dropdown menu like in Fig.8 below.
+5. Navigate to web interface by placing the IP address you set for the arduino in the URL location of a browser. Use the web interface to control your lightsabers from the dropdown menu like in Fig.8 below.
 
 <br/>
 
@@ -252,9 +252,7 @@ The web interface displays a selection of colors and an option to turn off the l
 
 **To Do:**
 
-- TODO Clean up the code
-- TODO Add reconnect function for dropped connections
-- TODO Speed up the lighting animation, it is a bit too slow for my liking. Possible to light more than one LED at a time.
+- TODO Speed up the lighting animation, it is a bit too slow for my liking. Possible to light more than one LED at a time in each loop iteration.
 
 <br/>
 
