@@ -254,6 +254,7 @@ The web interface displays a selection of colors and an option to turn off the l
 **To Do:**
 
 - TODO Speed up the lighting animation, it is a bit too slow for my liking. Possible to light more than one LED at a time in each loop iteration.
+- TODO Look into the Improvements viability
 
 <br/>
 
