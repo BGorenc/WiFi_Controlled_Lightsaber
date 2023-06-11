@@ -32,7 +32,7 @@ The objective of this project is to employ an Arduino microcontroller that can w
     - This allows us to step up the 3.3v signal from the Arduino Nano to the expected 5v signal for the WS2812B Led Strips.
 - 2x [220 ohm Resistor](https://www.google.com/search?q=220+ohm+resistor)
     - Needed to limit the current flowing out of each data pin through the circuit, prevents damaging the Arduino and LEDs. Many options available for purchase.
-- 1x [100 uf Capacitor](https://www.arduino.cc/documents/datasheets/cap100uF.pdf)
+- 1x [>=100 uf 25V Capacitor](https://www.arduino.cc/documents/datasheets/cap100uF.pdf)
     - This serves as a way to maintain a constant power supply. Many options available for purchase.
 
 #### Lightsaber
@@ -109,7 +109,7 @@ You should be able to use your WAGO Connectors here to connect the power and dat
 
 You will obviously have to think about the wire length you need for your implementation. However, keep in mind your data lines should be kept close to 3 meters or less so you don't suffer weakening the integrity of your signal.
 
-Finally, don't forget to set up the Kasa plug so the you can remotely turn on and off the power to your Lightsaber. This plug works through both Google Home and Alexa and is pretty intuitive to set up.
+Finally, if you are using the Kasa plug don't forget to set it up so that you can remotely turn on and off the power to your Lightsaber. This plug works through both Google Home and Alexa and is pretty intuitive to set up.
 
 <ins>**18 Awg:**</ins>
     - Used to run power to the LED strips and the Arduino
