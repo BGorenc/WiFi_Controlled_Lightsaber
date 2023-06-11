@@ -32,7 +32,7 @@ The objective of this project is to employ an Arduino microcontroller that can w
     - This allows us to step up the 3.3v signal from the Arduino Nano to the expected 5v signal for the WS2812B Led Strips.
 - 2x [220 ohm Resistor](https://www.google.com/search?q=220+ohm+resistor)
     - Needed to limit the current flowing out of each data pin through the circuit, prevents damaging the Arduino and LEDs. Many options available for purchase.
-- 1x [>=100 uf 25V Capacitor](https://www.arduino.cc/documents/datasheets/cap100uF.pdf)
+- 1x [>=100 uf 25v Capacitor](https://www.arduino.cc/documents/datasheets/cap100uF.pdf)
     - This serves as a way to maintain a constant power supply. Many options available for purchase.
 
 #### Lightsaber
