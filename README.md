@@ -32,7 +32,7 @@ The objective of this project is to employ an Arduino microcontroller that can w
     - This allows us to step up the 3.3v signal from the Arduino Nano to the expected 5v signal for the WS2812B Led Strips.
 - 2x [220 ohm Resistor](https://www.google.com/search?q=220+ohm+resistor)
     - Needed to limit the current flowing out of each data pin through the circuit, prevents damaging the Arduino and LEDs. Many options available for purchase.
-- 1x [100 uf Capacitor](https://www.arduino.cc/documents/datasheets/cap100uF.pdf)
+- 1x [>=100 uf 25v Capacitor](https://www.arduino.cc/documents/datasheets/cap100uF.pdf)
     - This serves as a way to maintain a constant power supply. Many options available for purchase.
 
 #### Lightsaber
@@ -109,7 +109,7 @@ You should be able to use your WAGO Connectors here to connect the power and dat
 
 You will obviously have to think about the wire length you need for your implementation. However, keep in mind your data lines should be kept close to 3 meters or less so you don't suffer weakening the integrity of your signal.
 
-Finally, don't forget to set up the Kasa plug so the you can remotely turn on and off the power to your Lightsaber. This plug works through both Google Home and Alexa and is pretty intuitive to set up.
+Finally, if you are using the Kasa plug don't forget to set it up so that you can remotely turn on and off the power to your Lightsaber. This plug works through both Google Home and Alexa and is pretty intuitive to set up.
 
 <ins>**18 Awg:**</ins>
     - Used to run power to the LED strips and the Arduino
@@ -210,7 +210,7 @@ When powered on in the setup() section the program initializes the LED strips, s
 
 The web interface allows users to control the lightsaber. When a client connects to the server, the program checks for incoming data. If there is data available, it reads the data and processes the commands. The program interprets the received commands and performs the corresponding actions to control the lightsaber's state and color. This is done through the use of simple GET requests that are submitted through a form from the client.
 
-The web interface displays a selection of colors and an option to turn off the lightsaber and can be easily customized. When a user selects a color or the turn off option and submits the form, the program updates the LED strips accordingly.
+The web interface displays a selection of colors and an option to turn off the lightsaber and can be easily customized. When a user selects a color or the turn off option and submits the form, the program updates the LED strips accordingly with a simply power on/off animation.
 
 <br/>
 
@@ -249,6 +249,7 @@ The web interface displays a selection of colors and an option to turn off the l
 - Add randomized effects
 - Add holiday based effects
 - Potentially add a pulsing effect, may be limited by the single core of the Arduino that does not allow for multithreading.
+- Add a way to navigate to the webpage that doesn't rely on knowing the IP address.
 
 **To Do:**
 
