@@ -249,6 +249,7 @@ The web interface displays a selection of colors and an option to turn off the l
 - Add randomized effects
 - Add holiday based effects
 - Potentially add a pulsing effect, may be limited by the single core of the Arduino that does not allow for multithreading.
+- Add a way to navigate to the webpage that doesn't rely on knowing the IP address.
 
 **To Do:**
 
