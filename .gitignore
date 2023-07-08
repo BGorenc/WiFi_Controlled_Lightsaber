@@ -1,3 +1,5 @@
-arduino_controller/arduino_secrets.h
+# wifi secrets file
 arduino_secrets.h
+
+# local configurations
 .vscode/
