@@ -1,5 +1,5 @@
 # wifi secrets file
-arduino_secrets.h
+#arduino_secrets.h
 
 # local configurations
 .vscode/
