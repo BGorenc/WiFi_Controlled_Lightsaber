@@ -34,8 +34,8 @@
 
 /* Settings for LED Strip */
 #define NUM_LEDS 144                             // Number of LEDS per Strip
-#define CHIP_SET WS2812B                         // Number of LEDS Chip
-#define COLOR_ORDER GRB                          // Color Settings
+#define CHIP_SET WS2812B                         // LED Chip
+#define COLOR_ORDER GRB                          // Color Settings for LED Chip
 #define BRIGHTNESS 200                           // LED Brightness
 #define MAX_VOLTS 5
 #define MAX_AMPS 4500
