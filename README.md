@@ -262,6 +262,8 @@ The web interface displays a selection of colors and an option to turn off the l
 
 ## Open Source
 
-You are encouraged to modify and enhance the code and web interface according to your specific needs. Feel free to customize it, make improvements, and submit pull requests (PRs) if you would like to contribute your changes. This project is open source on GitHub, and your contributions are welcome. Enjoy controlling your lightsaber remotely!
+See LICENSE file in this repository for how to adhere to the specific open source requirements/conditions.
+
+You are encouraged to modify and enhance the code and web interface according to your specific needs. Feel free to customize it, make improvements, and submit pull requests (PRs) if you would like to contribute your changes. This project is open source on GitHub and follows the requirements/conditions as listed in the LICENSE file, and your contributions are welcome as long as they follow the same LICENSE requirements/conditions. Enjoy controlling your lightsaber remotely!
 
 <br/>
