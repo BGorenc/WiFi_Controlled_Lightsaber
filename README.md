@@ -246,15 +246,17 @@ The web interface displays a selection of colors and an option to turn off the l
 
 **Improvement:**
 
-- Add randomized effects
-- Add holiday based effects
+- Use ESP32 instead of Arduino Nano, will yield many improvements, 
+  - Faster processor
+  - Dual core for multi threading
+  - Cheaper
 - Potentially add a pulsing effect, may be limited by the single core of the Arduino that does not allow for multithreading.
-- Add a way to navigate to the webpage that doesn't rely on knowing the IP address.
 
 **To Do:**
 
-- TODO Speed up the lighting animation, it is a bit too slow for my liking. Possible to light more than one LED at a time in each loop iteration.
-- TODO Look into the Improvements viability
+- TODO Add randomized effects that will periodically cycle through hues
+- TODO Add Holiday Based effects
+- TODO Add a color pallette selector, instead of drop down
 
 <br/>
 
