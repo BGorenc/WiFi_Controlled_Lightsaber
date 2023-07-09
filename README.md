@@ -105,14 +105,14 @@ All this being said, please note that it is ok to power the Arduino Nano 33 IoT 
 
 The importance of having the data line be separate for each LED strip is so that we can preserve a strong signal. If we split a single signal, when the LEDs heat up we will end up with intermittent signal integrity on the LED strips. This will yield unintended results.
 
-You should be able to use your WAGO Connectors here to connect the power and data line at the Arduino to your power and data lines that will run to the blade of the Lightsaber. Then on the other end of these data and power lines use the WAGO connectors to connect to the corresponding JST connector that came with your LED strips. This will leave you with the ability to easily disconnect your components if the need arises.
+You should be able to use your WAGO Connectors here to connect the power and data line at the Arduino to your power and data lines that will run to the blade of the Lightsaber (in this case the LED strips). Then on the other end of these data and power lines use the WAGO connectors to connect to the corresponding JST connector that came with your LED strips. This will leave you with the ability to easily disconnect your components on both ends if the need arises.
 
 You will obviously have to think about the wire length you need for your implementation. However, keep in mind your data lines should be kept close to 3 meters or less so you don't suffer weakening the integrity of your signal.
 
 Finally, if you are using the Kasa plug don't forget to set it up so that you can remotely turn on and off the power to your Lightsaber. This plug works through both Google Home and Alexa and is pretty intuitive to set up.
 
 <ins>**18 Awg:**</ins>
-    - Used to run power to the LED strips and the Arduino
+    - Used to run power directly from the power supply to the LED strips and the Arduino
 
 <ins>**20 Awg:**</ins>
     - Used to run power across the PCB Board to other components
