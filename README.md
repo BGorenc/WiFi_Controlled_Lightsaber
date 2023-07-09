@@ -249,7 +249,7 @@ The web interface displays a selection of colors and an option to turn off the l
 **Improvement:**
 
 - Use ESP32 instead of Arduino Nano, will yield many improvements, 
-  - Faster processor
+  - Faster processor (~10x)
   - Dual core for multi threading
   - Cheaper
 - Potentially add a pulsing effect, may be limited by the single core of the Arduino that does not allow for multithreading.
