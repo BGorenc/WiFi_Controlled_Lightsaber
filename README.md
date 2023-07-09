@@ -198,7 +198,7 @@ If at this point you feel that when assembled the JST connection wires are too l
 
 The program has two files. The first file is **arduino_secrets.h**. This file is used to enter your network SSID and Password. The file should not be tracked in the repository for what should be obvious reasons. It is an attempt to decouple your network name and password from the code it self. If the file is being tracked you can use the command below to force git to stop tracking it.
 
-    git update-index --assume-unchanged arduino_secrets.h
+    git update-index --assume-unchanged .\arduino_controller\arduino_secrets.h 
 
 The next file where the brunt of everything happens is the **arduino_controller.ino** file. This file makes use of 3 libraries.
 
