@@ -99,7 +99,7 @@ The objective of this project is to employ an Arduino microcontroller that can w
 </div>
 
 
-The circuit is showing two data lines from Pins 2 and 3 which both require a 220 ohm resistor. The data line leaving the Arduino Nano 33 IoT has a voltage of ~ 3.3v and needs to be stepped up to 5v for the WS2812B LED Strip. This is where the bidirectional Logic Level Shifter comes into play. We can pass the data line through the LVx channel and out of the corresponding HVx channel (ie. LV1 -> HV1). To do this the shifter needs reference voltages and the shared ground. The Pin marked just LV will be our 3.3v reference which is fed through the 3.3v power pin on the Arduino. Then from the power supply we can use the 5v as a reference by feeding it into the HV Pin. It is important to use the same ground for all components.
+The circuit is showing two data lines from Pins 2 and 3 which both require a 220 ohm resistor. The data line leaving the Arduino Nano 33 IoT has a voltage of ~ 3.3v and needs to be stepped up to 5v for the WS2812B LED Strip. This is where the bidirectional Logic Level Shifter comes into play. We can pass the data line through the LVx channel and out of the corresponding HVx channel (ie. LV1 -> HV1). To do this the shifter needs reference voltages and the shared ground. The Pin marked just LV will be our 3.3v reference which is fed through the 3.3v power pin on the Arduino. Then from the power supply we can use the 5v as a reference by feeding it into the HV Pin. It is important to use the same ground for all components. It goes without saying that Fig.1 is showing the breadboard layout and this should be transferred and soldered to a PCB for permanent use once you confirm everything is in working order.
 
 All this being said, please note that it is ok to power the Arduino Nano 33 IoT with a 5v power supply because this Arduino makes use of an onboard voltage regulator to adjust the power to the 3.3v needed for the board. This is where you want to add your capacitor across the positive and negative terminal as well to help maintain a steady flow of power. Also not shown here is the use of the 2 pin terminal block. This is need to easily connect the 18 awg wire to the circuit board. **The 2 pin terminal block will need to be angled on the positive and negative strips of the board you are soldering to**. This is a minor issue and should give you no complications other than being moderately unpleasing to look at.
 
@@ -124,9 +124,9 @@ Finally, if you are using the Kasa plug don't forget to set it up so that you ca
 
 ### Blade
 
-Building the blade probably requires the most manual labor out of the entire project. Before getting started you will want to test out these LED strips with the circuit you just built. There will be a JST connector on both ends and you need to remove one of them on each strip. I would also recommend cutting the power injection cables (The wires not in a JST connector) as short as possible so they are out of the way.
+Building the blade probably requires the most manual labor out of the entire project. Before getting started you will want to test out these LED strips with the circuit you just built. There will be a JST connector on both ends and you need to remove one of them on each strip. Be sure to remove the correct JST connectors there should be arrows on the strips showing the direction the signal moves in. You should also be able to test the connections to verify it works as expected. I would also recommend cutting the power injection cables (The wires not in a JST connector) as short as possible so they are out of the way.
 
-Then the first tedious task is to insert the LED strips into the foam tube. The LED strips should come with double sided tape and can be used to affix the LED strips together back to back. It just has to hold long enough to get the LEDs into the foam tube. You can cut the very corners of the LED you plan to put in the blade to make inserting them a little easier. There really is no magic formula to getting the LEDs into the foam tubing. It just takes time and patience and be sure to flatten the foam tube as you push the LED strips along to help get them through.
+Then the first tedious task is to insert the LED strips into the foam tube. The LED strips should come with double sided tape and can be used to affix the LED strips together back to back (I prefer to remove the tape and use a hot glue gun). It just has to hold long enough to get the LEDs into the foam tube. You can cut the very corners of the LED PCB that you plan to use as the tip of your blade, to make inserting them a little easier. There really is no magic formula to getting the LEDs into the foam tubing. It just takes time and patience and be sure to flatten the foam tube as you push the LED strips along to help get them through.
 
 <div style="text-align: center;">
   <img src="Images/blade_tip_exploded.PNG" alt="Blade Tip" title="Blade Tip" class="center">
@@ -135,11 +135,11 @@ Then the first tedious task is to insert the LED strips into the foam tube. The 
   </p>
 </div>
 
-Now you will want to have a bit of the end of the LED strip to have an exposed LED that will fit in the tip. This is where you will need to do some sanding in two places. 
-1. The mating surfaces of the blade and tip are too tight to press together. I suggest taking the sand paper or Dremel to the inner diameter of the blade. Careful not to overdo it so that you have a nice snug fit.
+Now you will want to have the tip of the LED strip (the side that you removed the JST connector from) to have an exposed LED that will fit into the tip. This is where you will need to do some sanding in two places. 
+1. The mating surfaces of the blade and tip are too tight to press together. I suggest taking the sand paper or Dremel to the inner diameter of the blade. Careful not to overdo it so that you retain a nice snug fit.
 2. The second place is the inner diameter of the blade tip. There is not enough clearance to get the LED inside the tip. This is in my opinion the most annoying part of the project to do if you are not using a Dremel. But just work at it and get enough room that the exposed LED will easily slide in and out of the tip.
 
-At this point you will want to assemble the blade tip in what will be your final configuration. Use this set up to make a mark where you will cut off the excess blade. The blade is translucent enough to see where everything is sitting inside and keep in mind the plug on the other end will sit slightly recessed around the press fit area. After you have your length marked, disassemble the blade so you can use the hack saw to cut off the excess blade. Be sure to sand down the edge and remove any sharp points.
+At this point you will want to assemble the blade tip in what will be your final configuration. Use this set up to make a mark where you will cut off the excess tube from the bottom of the blade. The blade is translucent enough to see where everything is sitting inside and keep in mind the plug on the other end will sit slightly recessed around the press fit area. After you have your length marked, disassemble the blade so you can use the hack saw to cut off the excess tubing. Be sure to sand down the cut edge and remove any sharp points.
 
 <div style="text-align: center;">
   <img src="Images/blade_wire_outlet.PNG" alt="Wire Outlet" title="Wire Outlet" class="center">
@@ -148,7 +148,7 @@ At this point you will want to assemble the blade tip in what will be your final
   </p>
 </div>
 
-At this point you will will have the same issue as before with the tip. The mating surfaces of the blade and outlet plug are too tight. So you will have to sand down the mating surface of the blade until you get a nice snug fit between the two components.
+At this point you will will have the same issue as before with the tip. The mating surfaces of the blade and outlet plug (1" Thin Walled Pixel Blade Adapter) are too tight. So you will have to sand down the mating surface of the blade until you get a nice snug fit between the two components.
 
 <div style="text-align: center;">
   <img src="Images/bade_assembled.PNG" alt="Blade Assembled" title="Blade Assembled" class="center">
@@ -157,7 +157,7 @@ At this point you will will have the same issue as before with the tip. The mati
   </p>
 </div>
 
-Here you should be able to assemble the blade for the final time. Feed the JST connectors through the Outlet Plug and the blade is ready to use.
+Here you should be able to assemble the blade for the final time. Feed the JST connectors through the Outlet Plug (1" Thin Walled Pixel Blade Adapter) and the blade is ready to use.
 
 <div style="text-align: center;">
   <img src="Images/hilt_spacer.PNG" alt="Hilt Spacer" title="Hilt Spacer" class="center">
@@ -166,9 +166,9 @@ Here you should be able to assemble the blade for the final time. Feed the JST c
   </p>
 </div>
 
-Now that the blade is fully assembled we need to ensure that the blade doesn't bottom out in the hilt. To do this we will need a spacer made out of the PVC pipe. Your goal is to leave enough wire so that you can run the JST connector through the gap between the inner diameter of the Hilt and the outer diameter of the Blade but still have enough wire to work with with when interconnecting with the Arduino. You will need to balance this with enough of the blade remaining in the hilt as well as this point will act as a bit of a support for your final display.
+Now that the blade is fully assembled we need to ensure that the blade doesn't bottom out in the hilt. To do this we will need a spacer made out of the PVC pipe. Ensure that you provide sufficient length to the wire, allowing the JST connector to pass through the space between the inner diameter of the Hilt and the outer diameter of the blade. This will allow for proper connection with the Arduino while still leaving enough wire to work with. You will need to balance this with enough of the blade remaining in the hilt as well as this point will act as a bit of a support for your final display.
 
-Once you found that magic amount you can use the hacksaw again to cut your pvc piece to length. Then you will want to cut a bit of a notch to act as a strain relief for the wire to run through. If you are not using a Dremel you can cut a V shape which will serve the same purpose as the one pictured. Be sure to sand down all the edges so that there are no sharp corners.
+Once you found that magic amount you can use the hacksaw again to cut your pvc piece to length. Then you will want to cut out a notch to act as a strain relief for the wire to run through. If you are not using a Dremel you can cut a V shape with the hack saw which will serve the same purpose as the one pictured. Be sure to sand down all the edges so that there are no sharp corners.
 
 <div style="text-align: center;">
   <img src="Images/blade_spacer_hilt_exploded.PNG" alt="Exploded View" title="Exploded View" class="center">
@@ -187,7 +187,7 @@ This exploded view should be enough to show you how the assembly will go togethe
   </p>
 </div>
 
-If at this point you feel the wire is too long or not long enough feel free to start with a new spacer. You should have a lot of left over PVC available to experiment with.
+If at this point you feel that when assembled the JST connection wires are too long or not long enough, feel free to start with a new spacer. You should have a lot of left over PVC available to experiment with.
 
 
 <br/>
@@ -196,7 +196,9 @@ If at this point you feel the wire is too long or not long enough feel free to s
 
 > It is important to note that this arduino can not connect to 5 GHz Wi-Fi frequency and will need a 2.4 GHz signal to operate.
 
-The program has two files. The first file is **arduino_secrets.h**. This file is used to enter your network SSID and Password. The file is not tracked in the repository for what should be obvious reasons. It is an attempt to decouple your network name and password from the code it self.
+The program has two files. The first file is **arduino_secrets.h**. This file is used to enter your network SSID and Password. The file should not be tracked in the repository for what should be obvious reasons. It is an attempt to decouple your network name and password from the code it self. If the file is being tracked you can use the command below to force git to stop tracking it.
+
+    git update-index --assume-unchanged arduino_secrets.h
 
 The next file where the brunt of everything happens is the **arduino_controller.ino** file. This file makes use of 3 libraries.
 
@@ -206,11 +208,11 @@ The next file where the brunt of everything happens is the **arduino_controller.
 
 The program uses the FastLED library to control the WS2812B LED strips. The LED strips are connected to the Arduino Nano 33 IoT board, with one strip connected to the DATA_PIN and the other strip connected to DATA_PIN_CLONE. The program supports a single lightsaber with two identical LED strips.
 
-When powered on in the setup() section the program initializes the LED strips, sets the brightness and power limits, and starts the serial communication. However, the most critical component is setting the IP address of the Arduino, otherwise you won't know the IP of your Arduino.Even if you went through the trouble of figuring it out there is no guarantee your router will always assign the same IP. Once these steps are done, tt then attempts to connect to the configured WiFi network using the WiFiNINA module. Once connected, it starts a server on port 80 to host a small simple web interface accessible by placing the IP address you set into the URL of any browser on the same network.
+When powered on in the setup() section the program initializes the LED strips, sets the brightness and power limits, and starts the serial communication. However, the most critical component is setting the IP address of the Arduino, otherwise you won't know the IP of your Arduino. Even if you went through the trouble of figuring it out there is no guarantee your router will always assign the same IP. Once these steps are done, then the arduino attempts to connect to the configured WiFi network using the WiFiNINA module. Once connected, it starts a server on port 80 to host a small simple web interface accessible by placing the IP address you set into the URL of any browser on the same network. If connection is lost the code should attempt to reconnect to the WiFi. There does seem to be an intermittent issue of losing a connection with either the WiFiNINA library or the WiFi chip of the Arduino, thankfully that is easily remedied by prompting the Arduino to reconnect when the connection is lost.
 
-The web interface allows users to control the lightsaber. When a client connects to the server, the program checks for incoming data. If there is data available, it reads the data and processes the commands. The program interprets the received commands and performs the corresponding actions to control the lightsaber's state and color. This is done through the use of simple GET requests that are submitted through a form from the client.
+The Arduino's hosted web interface allows users to control the lightsaber (ie. change color, turn off, and more). When a client connects to the server, the program checks for incoming data. If there is data available, it reads the data and processes the commands. The program interprets the received commands and performs the corresponding actions to control the lightsaber's state and color. This is done through the use of simple GET requests that are submitted through a form from the client.
 
-The web interface displays a selection of colors and an option to turn off the lightsaber and can be easily customized. When a user selects a color or the turn off option and submits the form, the program updates the LED strips accordingly with a simply power on/off animation.
+The web interface displays a selection of colors and an option to turn off the lightsaber and can be easily customized. When a user selects a color or the turn off option and submits the form, the program updates the LED strips accordingly with an appropriate lightsaber styled power on/off animation.
 
 <br/>
 
