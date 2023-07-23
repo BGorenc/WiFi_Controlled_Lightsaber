@@ -169,7 +169,7 @@ void displayWebPage(WiFiClient& client) {
 }
 
 void parseClientData(const String& request){
-
+  // TODO find a way to use a data structure instead of this repetitive code
   if (request.indexOf("ledState=AllOff") > 0) {
     turnOffAll();
   } else if (request.indexOf("ledState=Green") > 0) {
