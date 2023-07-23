@@ -196,7 +196,7 @@ If at this point you feel that when assembled the JST connection wires are too l
 
 > It is important to note that this arduino can not connect to 5 GHz Wi-Fi frequency and will need a 2.4 GHz signal to operate.
 
-The program has two files. The first file is **arduino_secrets.h**. This file is used to enter your network SSID and Password. The file should not be tracked in the repository for what should be obvious reasons. It is an attempt to decouple your network name and password from the code it self. If you plan to work on this code with git I must stress you **make sure arduino_secrets.h is not being tracked** by git so that you don't accidently push it with your password. If the file is being tracked you can use the command below to force git to stop tracking it.
+The program has two files. The first file is **arduino_secrets.h**. This file is used to enter your network SSID and Password. The file should not be tracked in the repository for what should be obvious reasons. It is an attempt to decouple your network name and password from the code it self. If you plan to work on this code with git I must stress you **make sure arduino_secrets.h is not being tracked** by git so that you don't accidentally push it with your password. If the file is being tracked you can use the command below to force git to stop tracking it.
 
     git update-index --assume-unchanged .\arduino_controller\arduino_secrets.h 
 
@@ -256,6 +256,7 @@ The web interface displays a selection of colors and an option to turn off the l
 
 **To Do:**
 
+- TODO update parseClientData() to read from a data structure, current function code is unnecessarily repetitive
 - TODO Add randomized effects that will periodically cycle through hues
 - TODO Add Holiday Based effects
 - TODO Add a color pallette selector, instead of drop down
