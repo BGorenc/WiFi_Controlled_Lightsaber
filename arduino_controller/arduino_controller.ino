@@ -25,6 +25,7 @@
 #include <WiFiNINA.h>
 #include "arduino_secrets.h"
 #include <FastLED.h>
+#include <map>
 
 /* **********************SETTINGS********************** */
 /* Settings for Arduino */
@@ -45,12 +46,12 @@
 char ssid[] = SECRET_SSID;
 char pass[] = SECRET_PASSWORD;
 int keyIndex = 0;
-CRGB leds[NUM_LEDS];
+CRGB leds[NUM_LEDS];       // Second LED Strip
 CRGB ledsClone[NUM_LEDS];  // Second LED Strip
-
 int status = WL_IDLE_STATUS;
 WiFiServer server(80);
 String readString;
+std::map<String, CRGB> ledColors; // Hold the translations for the color selection to the CRGB LED color
 
 void setup() {
   FastLED.addLeds<CHIP_SET, DATA_PIN, COLOR_ORDER> (leds,NUM_LEDS);
@@ -68,6 +69,8 @@ void setup() {
   IPAddress ip = WiFi.localIP();
   Serial.print("IP Address: ");
   Serial.println(ip);
+
+  populateColorMap();
 }
 
 void loop() {
@@ -112,6 +115,19 @@ void connectToWiFi() {
   }
 }
 
+void populateColorMap() {
+  // Populate the map with the translations for the color selection to the CRGB LED color
+  ledColors = {
+    {"AllOff", CRGB::Black},
+    {"Green", CRGB::Green},
+    {"Red", CRGB::Red},
+    {"Pink", CRGB::DeepPink},
+    {"Blue", CRGB::Blue},
+    {"Purple", CRGB::DarkViolet},
+    {"Yellow", CRGB::Yellow}
+  };
+}
+
 void turnOffAll() {
 
   for(int i = (NUM_LEDS - 1); i >= 0; i--) {
@@ -120,7 +136,6 @@ void turnOffAll() {
     FastLED.show();
   }
   delay(1);
-
 }
 
 void lightUpColor(CRGB color) {
@@ -131,7 +146,6 @@ void lightUpColor(CRGB color) {
     FastLED.show();
   }
   delay(1);
-
 }
 
 void displayWebPage(WiFiClient& client) {
@@ -165,40 +179,19 @@ void displayWebPage(WiFiClient& client) {
   client.println("</body>");
   client.println("</html>");
   delay(1);
-
 }
 
 void parseClientData(const String& request){
-  // TODO find a way to use a data structure instead of this repetitive code
-  if (request.indexOf("ledState=AllOff") > 0) {
+  // Check to make sure the ledStateIndex exists
+  int ledStateIndex = request.indexOf("ledState=");
+  if (ledStateIndex > 0) {
+    // Get the ledState= value from the request find the CRGB translation in the map 
+    // Trigger the turn off the current color animation and light up the new color
+    String ledState = request.substring(ledStateIndex + 9);
+    CRGB colorChoice = ledColors[ledState];
     turnOffAll();
-  } else if (request.indexOf("ledState=Green") > 0) {
-    turnOffAll();
-    CRGB colorChoice = CRGB::Green;
-    lightUpColor(colorChoice);
-  } else if (request.indexOf("ledState=Red") > 0) {
-    turnOffAll();
-    CRGB colorChoice = CRGB::Red;
-    lightUpColor(colorChoice);
-  } else if (request.indexOf("ledState=Pink") > 0) {
-    turnOffAll();
-    CRGB colorChoice = CRGB::DeepPink;
-    lightUpColor(colorChoice);
-  } else if (request.indexOf("ledState=Blue") > 0) {
-    turnOffAll();
-    CRGB colorChoice = CRGB::Blue;
-    lightUpColor(colorChoice);
-  } else if (request.indexOf("ledState=Purple") > 0) {
-    turnOffAll();
-    CRGB colorChoice = CRGB::DarkViolet;
-    lightUpColor(colorChoice);
-  } else if (request.indexOf("ledState=Yellow") > 0) {
-    turnOffAll();
-    CRGB colorChoice = CRGB::Yellow;
     lightUpColor(colorChoice);
   }
-  
   readString = ""; // Clear the readString variable
   delay(1);
-
 }
