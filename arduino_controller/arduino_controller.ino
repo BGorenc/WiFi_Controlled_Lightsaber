@@ -32,6 +32,7 @@
 #define DATA_PIN 2                               // First LED Pin
 #define DATA_PIN_CLONE 3                         // Second LED Pin
 #define setArduinoIP IPAddress(192, 168, 1, 151) // Set the IP address of the Arduino
+String webpageTitle = "Jedi Lightsaber Control"; // Title for the webpage
 
 /* Settings for LED Strip */
 #define NUM_LEDS 144                             // Number of LEDS per Strip
@@ -54,6 +55,7 @@ String readString;
 std::map<String, CRGB> ledColors; // Hold the translations for the color selection to the CRGB LED color
 
 void setup() {
+
   FastLED.addLeds<CHIP_SET, DATA_PIN, COLOR_ORDER> (leds,NUM_LEDS);
   FastLED.addLeds<CHIP_SET, DATA_PIN_CLONE, COLOR_ORDER> (ledsClone,NUM_LEDS); // Second LED Strip
   FastLED.setBrightness(BRIGHTNESS);
@@ -74,6 +76,7 @@ void setup() {
 }
 
 void loop() {
+
   if (WiFi.status() != WL_CONNECTED) {
     Serial.println("Wi-Fi connection lost. Reconnecting...");
     WiFi.disconnect();
@@ -107,6 +110,7 @@ void loop() {
 }
 
 void connectToWiFi() {
+
   while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to Network named: ");
     Serial.println(ssid);
@@ -116,6 +120,7 @@ void connectToWiFi() {
 }
 
 void populateColorMap() {
+
   // Populate the map with the translations for the color selection to the CRGB LED color
   ledColors = {
     {"AllOff", CRGB::Black},
@@ -164,7 +169,7 @@ void displayWebPage(WiFiClient& client) {
 
   client.println("<html>");
   client.println("<head>");
-  client.println("<title>Jedi Lightsaber</title>");
+  client.println("<title>" + webpageTitle + "</title>");
   client.println("<style>");
   client.println("body { background-color: #f2f2f2; font-family: Arial, sans-serif; }");
   client.println("h1 { color: #333333; text-align: center; }");
@@ -174,16 +179,17 @@ void displayWebPage(WiFiClient& client) {
   client.println("</style>");
   client.println("</head>");
   client.println("<body>");
-  client.println("<h1>Jedi Lightsaber Control</h1>");
+  client.println("<h1>" + webpageTitle + "</h1>");
   client.println("<form method=\"get\" action=\"\">");
   client.println("<select name=\"ledState\">");
-  client.println("<option value=\"AllOff\">Turn Off</option>");
-  client.println("<option value=\"Blue\">Blue</option>");
-  client.println("<option value=\"Green\">Green</option>");
-  client.println("<option value=\"Pink\">Pink</option>");
-  client.println("<option value=\"Purple\">Purple</option>");
-  client.println("<option value=\"Red\">Red</option>");
-  client.println("<option value=\"Yellow\">Yellow</option>");
+
+  // Use the ledColors map to generate drop down options
+  for (const auto& entry : ledColors) {
+    client.print("<option value=\"");
+    client.print(entry.first); // Use the Key
+    client.println("\">" + entry.first + "</option>");
+  }
+
   client.println("</select>");
   client.println("<br><br>");
   client.println("<input type=\"submit\" value=\"Submit\">");
@@ -194,18 +200,17 @@ void displayWebPage(WiFiClient& client) {
 }
 
 void parseClientData(const String& request){
+
   // Check to make sure the ledStateIndex exists
-  Serial.println("Request: " + request);
   int ledStateIndex = request.indexOf("ledState=");
-  Serial.println("ledStateIndex: " +  String(ledStateIndex));
   if (ledStateIndex >= 0) {
-    // Find the final index of the request
+    // Find the final index of the request to trim excess
     int ledStateEndIndex = request.indexOf(" ", ledStateIndex);
     if (ledStateEndIndex == -1) {
       ledStateEndIndex = request.length(); // Use whole string when no match
     }
     // Get the ledState= value from the request find the CRGB translation in the map 
-    // Trigger the turn off the current color animation and light up the new color
+    // Trigger the turn off current color animation and light up the new color
     String ledState = request.substring(ledStateIndex + 9, ledStateEndIndex);
     Serial.println("ledState: " + ledState);
     CRGB colorChoice = ledColors[ledState];
