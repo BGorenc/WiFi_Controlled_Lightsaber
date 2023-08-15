@@ -25,12 +25,14 @@
 #include <WiFiNINA.h>
 #include "arduino_secrets.h"
 #include <FastLED.h>
+#include <map>
 
 /* **********************SETTINGS********************** */
 /* Settings for Arduino */
 #define DATA_PIN 2                               // First LED Pin
 #define DATA_PIN_CLONE 3                         // Second LED Pin
 #define setArduinoIP IPAddress(192, 168, 1, 150) // Set the IP address of the Arduino
+String webpageTitle = "Sith Lightsaber Control"; // Title for the webpage
 
 /* Settings for LED Strip */
 #define NUM_LEDS 144                             // Number of LEDS per Strip
@@ -45,14 +47,15 @@
 char ssid[] = SECRET_SSID;
 char pass[] = SECRET_PASSWORD;
 int keyIndex = 0;
-CRGB leds[NUM_LEDS];
+CRGB leds[NUM_LEDS];       // Second LED Strip
 CRGB ledsClone[NUM_LEDS];  // Second LED Strip
-
 int status = WL_IDLE_STATUS;
 WiFiServer server(80);
 String readString;
+std::map<String, CRGB> ledColors; // Hold the translations for the color selection to the CRGB LED color
 
 void setup() {
+
   FastLED.addLeds<CHIP_SET, DATA_PIN, COLOR_ORDER> (leds,NUM_LEDS);
   FastLED.addLeds<CHIP_SET, DATA_PIN_CLONE, COLOR_ORDER> (ledsClone,NUM_LEDS); // Second LED Strip
   FastLED.setBrightness(BRIGHTNESS);
@@ -68,9 +71,12 @@ void setup() {
   IPAddress ip = WiFi.localIP();
   Serial.print("IP Address: ");
   Serial.println(ip);
+
+  populateColorMap();
 }
 
 void loop() {
+
   if (WiFi.status() != WL_CONNECTED) {
     Serial.println("Wi-Fi connection lost. Reconnecting...");
     WiFi.disconnect();
@@ -104,12 +110,39 @@ void loop() {
 }
 
 void connectToWiFi() {
+
   while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to Network named: ");
     Serial.println(ssid);
     status = WiFi.begin(ssid, pass);
     delay(10000);
   }
+}
+
+void populateColorMap() {
+
+  // Populate the map with the translations for the color selection to the CRGB LED color
+  ledColors = {
+    {"AllOff", CRGB::Black},
+    {"Green", CRGB::Green},
+    {"Red", CRGB::Red},
+    {"Pink", CRGB::DeepPink},
+    {"Blue", CRGB::Blue},
+    {"Purple", CRGB::DarkViolet},
+    {"Yellow", CRGB::Yellow}
+  };
+
+  for (const auto& entry : ledColors) {
+    Serial.print("Color: ");
+    Serial.print(entry.first); // Print the color name (key)
+    Serial.print("  R:");
+    Serial.print(entry.second.r); // Print the red component of the color (value)
+    Serial.print("  G:");
+    Serial.print(entry.second.g); // Print the green component of the color (value)
+    Serial.print("  B:");
+    Serial.println(entry.second.b); // Print the blue component of the color (value)
+  }
+  
 }
 
 void turnOffAll() {
@@ -120,7 +153,6 @@ void turnOffAll() {
     FastLED.show();
   }
   delay(1);
-
 }
 
 void lightUpColor(CRGB color) {
@@ -131,14 +163,13 @@ void lightUpColor(CRGB color) {
     FastLED.show();
   }
   delay(1);
-
 }
 
 void displayWebPage(WiFiClient& client) {
 
   client.println("<html>");
   client.println("<head>");
-  client.println("<title>Sith Lightsaber</title>");
+  client.println("<title>" + webpageTitle + "</title>");
   client.println("<style>");
   client.println("body { background-color: #f2f2f2; font-family: Arial, sans-serif; }");
   client.println("h1 { color: #333333; text-align: center; }");
@@ -148,16 +179,17 @@ void displayWebPage(WiFiClient& client) {
   client.println("</style>");
   client.println("</head>");
   client.println("<body>");
-  client.println("<h1>Sith Lightsaber Control</h1>");
+  client.println("<h1>" + webpageTitle + "</h1>");
   client.println("<form method=\"get\" action=\"\">");
   client.println("<select name=\"ledState\">");
-  client.println("<option value=\"AllOff\">Turn Off</option>");
-  client.println("<option value=\"Blue\">Blue</option>");
-  client.println("<option value=\"Green\">Green</option>");
-  client.println("<option value=\"Pink\">Pink</option>");
-  client.println("<option value=\"Purple\">Purple</option>");
-  client.println("<option value=\"Red\">Red</option>");
-  client.println("<option value=\"Yellow\">Yellow</option>");
+
+  // Use the ledColors map to generate drop down options
+  for (const auto& entry : ledColors) {
+    client.print("<option value=\"");
+    client.print(entry.first); // Use the Key
+    client.println("\">" + entry.first + "</option>");
+  }
+
   client.println("</select>");
   client.println("<br><br>");
   client.println("<input type=\"submit\" value=\"Submit\">");
@@ -165,40 +197,28 @@ void displayWebPage(WiFiClient& client) {
   client.println("</body>");
   client.println("</html>");
   delay(1);
-
 }
 
 void parseClientData(const String& request){
 
-  if (request.indexOf("ledState=AllOff") > 0) {
+  // Check to make sure the ledStateIndex exists
+  int ledStateIndex = request.indexOf("ledState=");
+  if (ledStateIndex >= 0) {
+    // Find the final index of the request to trim excess
+    int ledStateEndIndex = request.indexOf(" ", ledStateIndex);
+    if (ledStateEndIndex == -1) {
+      ledStateEndIndex = request.length(); // Use whole string when no match
+    }
+    // Get the ledState= value from the request find the CRGB translation in the map 
+    // Trigger the turn off current color animation and light up the new color
+    String ledState = request.substring(ledStateIndex + 9, ledStateEndIndex);
+    Serial.println("ledState: " + ledState);
+    CRGB colorChoice = ledColors[ledState];
     turnOffAll();
-  } else if (request.indexOf("ledState=Green") > 0) {
-    turnOffAll();
-    CRGB colorChoice = CRGB::Green;
     lightUpColor(colorChoice);
-  } else if (request.indexOf("ledState=Red") > 0) {
-    turnOffAll();
-    CRGB colorChoice = CRGB::Red;
-    lightUpColor(colorChoice);
-  } else if (request.indexOf("ledState=Pink") > 0) {
-    turnOffAll();
-    CRGB colorChoice = CRGB::DeepPink;
-    lightUpColor(colorChoice);
-  } else if (request.indexOf("ledState=Blue") > 0) {
-    turnOffAll();
-    CRGB colorChoice = CRGB::Blue;
-    lightUpColor(colorChoice);
-  } else if (request.indexOf("ledState=Purple") > 0) {
-    turnOffAll();
-    CRGB colorChoice = CRGB::DarkViolet;
-    lightUpColor(colorChoice);
-  } else if (request.indexOf("ledState=Yellow") > 0) {
-    turnOffAll();
-    CRGB colorChoice = CRGB::Yellow;
-    lightUpColor(colorChoice);
+  } else {
+    Serial.println("No Color Selection Found");
   }
-  
   readString = ""; // Clear the readString variable
   delay(1);
-
 }
