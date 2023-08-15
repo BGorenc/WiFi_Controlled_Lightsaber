@@ -256,7 +256,6 @@ The web interface displays a selection of colors and an option to turn off the l
 
 **To Do:**
 
-- TODO update parseClientData() to read from a data structure, current function code is unnecessarily repetitive
 - TODO Add randomized effects that will periodically cycle through hues
 - TODO Add Holiday Based effects
 - TODO Add a color palette selector, instead of drop down
