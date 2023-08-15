@@ -31,7 +31,7 @@
 /* Settings for Arduino */
 #define DATA_PIN 2                               // First LED Pin
 #define DATA_PIN_CLONE 3                         // Second LED Pin
-#define setArduinoIP IPAddress(192, 168, 1, 150) // Set the IP address of the Arduino
+#define setArduinoIP IPAddress(192, 168, 1, 151) // Set the IP address of the Arduino
 
 /* Settings for LED Strip */
 #define NUM_LEDS 144                             // Number of LEDS per Strip
@@ -152,7 +152,7 @@ void displayWebPage(WiFiClient& client) {
 
   client.println("<html>");
   client.println("<head>");
-  client.println("<title>Sith Lightsaber</title>");
+  client.println("<title>Jedi Lightsaber</title>");
   client.println("<style>");
   client.println("body { background-color: #f2f2f2; font-family: Arial, sans-serif; }");
   client.println("h1 { color: #333333; text-align: center; }");
@@ -162,7 +162,7 @@ void displayWebPage(WiFiClient& client) {
   client.println("</style>");
   client.println("</head>");
   client.println("<body>");
-  client.println("<h1>Sith Lightsaber Control</h1>");
+  client.println("<h1>Jedi Lightsaber Control</h1>");
   client.println("<form method=\"get\" action=\"\">");
   client.println("<select name=\"ledState\">");
   client.println("<option value=\"AllOff\">Turn Off</option>");
