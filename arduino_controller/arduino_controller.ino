@@ -126,6 +126,18 @@ void populateColorMap() {
     {"Purple", CRGB::DarkViolet},
     {"Yellow", CRGB::Yellow}
   };
+
+  for (const auto& entry : ledColors) {
+    Serial.print("Color: ");
+    Serial.print(entry.first); // Print the color name (key)
+    Serial.print("  R:");
+    Serial.print(entry.second.r); // Print the red component of the color (value)
+    Serial.print("  G:");
+    Serial.print(entry.second.g); // Print the green component of the color (value)
+    Serial.print("  B:");
+    Serial.println(entry.second.b); // Print the blue component of the color (value)
+  }
+  
 }
 
 void turnOffAll() {
@@ -183,14 +195,24 @@ void displayWebPage(WiFiClient& client) {
 
 void parseClientData(const String& request){
   // Check to make sure the ledStateIndex exists
+  Serial.println("Request: " + request);
   int ledStateIndex = request.indexOf("ledState=");
-  if (ledStateIndex > 0) {
+  Serial.println("ledStateIndex: " +  String(ledStateIndex));
+  if (ledStateIndex >= 0) {
+    // Find the final index of the request
+    int ledStateEndIndex = request.indexOf(" ", ledStateIndex);
+    if (ledStateEndIndex == -1) {
+      ledStateEndIndex = request.length(); // Use whole string when no match
+    }
     // Get the ledState= value from the request find the CRGB translation in the map 
     // Trigger the turn off the current color animation and light up the new color
-    String ledState = request.substring(ledStateIndex + 9);
+    String ledState = request.substring(ledStateIndex + 9, ledStateEndIndex);
+    Serial.println("ledState: " + ledState);
     CRGB colorChoice = ledColors[ledState];
     turnOffAll();
     lightUpColor(colorChoice);
+  } else {
+    Serial.println("No Color Selection Found");
   }
   readString = ""; // Clear the readString variable
   delay(1);
