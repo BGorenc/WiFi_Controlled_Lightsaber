@@ -33,7 +33,7 @@
 #define DATA_PIN_CLONE 3                         // Second LED Pin
 #define setArduinoIP IPAddress(192, 168, 1, 150) // Set the IP address of the Arduino
 String webpageTitle = "Sith Lightsaber Control"; // Title for the webpage
-unsigned long randomModeDurationMinutes = 1;    // Set the duration in minutes
+unsigned long randomModeDurationMinutes = 10;    // Set the duration in minutes
 
 /* Settings for LED Strip */
 #define NUM_LEDS 144                             // Number of LEDS per Strip
