@@ -33,6 +33,7 @@
 #define DATA_PIN_CLONE 3                         // Second LED Pin
 #define setArduinoIP IPAddress(192, 168, 1, 150) // Set the IP address of the Arduino
 String webpageTitle = "Sith Lightsaber Control"; // Title for the webpage
+unsigned long randomModeDurationMinutes = 1;    // Set the duration in minutes
 
 /* Settings for LED Strip */
 #define NUM_LEDS 144                             // Number of LEDS per Strip
@@ -53,6 +54,9 @@ int status = WL_IDLE_STATUS;
 WiFiServer server(80);
 String readString;
 std::map<String, CRGB> ledColors; // Hold the translations for the color selection to the CRGB LED color
+bool randomMode = false;
+unsigned long randomModeStartTime = 0;
+unsigned long randomModeDuration = randomModeDurationMinutes * 60 * 1000; // limit to trigger in milliseconds
 
 void setup() {
 
@@ -73,6 +77,8 @@ void setup() {
   Serial.println(ip);
 
   populateColorMap();
+  // seed the random function using a floating analog value
+  randomSeed(analogRead(A0));
 }
 
 void loop() {
@@ -107,6 +113,16 @@ void loop() {
       }
     }
   }
+
+  if (randomMode) {
+    unsigned long currentTime = millis();
+    if (currentTime - randomModeStartTime >= randomModeDuration) {
+      Serial.println("randomMode Active timer triggered");
+      randomModeStartTime = currentTime;
+      setRandomHue();
+    }
+  }
+
 }
 
 void connectToWiFi() {
@@ -145,6 +161,12 @@ void populateColorMap() {
   
 }
 
+void setRandomHue() {
+  uint8_t hue = random(256);
+  setHueLED(hue);
+  delay(1);
+}
+
 void turnOffAll() {
 
   for(int i = (NUM_LEDS - 1); i >= 0; i--) {
@@ -160,6 +182,16 @@ void lightUpColor(CRGB color) {
   for(int i = 0; i < NUM_LEDS; i++) {
     leds[i] = color;
     ledsClone[i] = color; // Second LED Strip
+    FastLED.show();
+  }
+  delay(1);
+}
+
+void setHueLED(uint8_t hue) {
+  turnOffAll();
+  for(int i = 0; i < NUM_LEDS; i++) {
+    leds[i].setHue(hue);
+    ledsClone[i].setHue(hue); // Second LED Strip
     FastLED.show();
   }
   delay(1);
@@ -189,7 +221,8 @@ void displayWebPage(WiFiClient& client) {
     client.print(entry.first); // Use the Key
     client.println("\">" + entry.first + "</option>");
   }
-
+  // Add the "Random" option to the drop-down
+  client.println("<option value=\"Random\">Random</option>");
   client.println("</select>");
   client.println("<br><br>");
   client.println("<input type=\"submit\" value=\"Submit\">");
@@ -199,7 +232,7 @@ void displayWebPage(WiFiClient& client) {
   delay(1);
 }
 
-void parseClientData(const String& request){
+void parseClientData(const String& request) {
 
   // Check to make sure the ledStateIndex exists
   int ledStateIndex = request.indexOf("ledState=");
@@ -213,11 +246,22 @@ void parseClientData(const String& request){
     // Trigger the turn off current color animation and light up the new color
     String ledState = request.substring(ledStateIndex + 9, ledStateEndIndex);
     Serial.println("ledState: " + ledState);
-    CRGB colorChoice = ledColors[ledState];
-    turnOffAll();
-    lightUpColor(colorChoice);
+    // Parse Request
+    if (ledState == "Random") {
+      Serial.println("Random selection made");
+      randomMode = true;
+      randomModeStartTime = millis();
+      setRandomHue();
+    } else {
+      Serial.println("Static color selection made");
+      randomMode = false;
+      CRGB colorChoice = ledColors[ledState];
+      turnOffAll();
+      lightUpColor(colorChoice);
+    }
+
   } else {
-    Serial.println("No Color Selection Found");
+    Serial.println("No Selection Found");
   }
   readString = ""; // Clear the readString variable
   delay(1);
