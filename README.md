@@ -205,6 +205,7 @@ The next file where the brunt of everything happens is the **arduino_controller.
 1. **SPI.h:** Enables Serial Peripheral Interface (SPI) communication. This communication is used in the WiFiNINA library and is essentially a dependency even though it is not invoked directly in the code.
 2. **WiFiNINA.h:** Provides WiFi functionality for connecting to networks and hosting the small server used to control the Arduino.
 3. **FastLED.h:** Controls the WS2812B LED strips gives the capability to change colors and turning LED strips on/off.
+4. **map:** The map is used to store static color options so that they can be easily added and removed as options in the dropdown menu.
 
 The program uses the FastLED library to control the WS2812B LED strips. The LED strips are connected to the Arduino Nano 33 IoT board, with one strip connected to the DATA_PIN and the other strip connected to DATA_PIN_CLONE. The program supports a single lightsaber with two identical LED strips.
 
@@ -212,7 +213,7 @@ When powered on in the setup() section the program initializes the LED strips, s
 
 The Arduino's hosted web interface allows users to control the lightsaber (ie. change color, toggle off, and random color mode every x minutes). When a client connects to the server, the program checks for incoming data. If there is data available, it reads the data and processes the commands. The program interprets the received commands and performs the corresponding actions to control the lightsaber's state and color. This is done through the use of simple GET requests that are submitted through a form from the client.
 
-The web interface displays a selection of colors and an option to turn off the lightsaber and can be easily customized. When a user selects a color or the turn off option and submits the form, the program updates the LED strips accordingly with an appropriate lightsaber styled power on/off animation. Another option, "Random," can periodically choose a new color every x minutes, but this mode can be overridden by selecting a new option from the dropdown.
+The web interface displays a selection of colors and an option to turn off the lightsaber and can be easily customized. When a user selects a color or the turn off option and submits the form, the program updates the LED strips accordingly with an appropriate lightsaber styled power on/off animation. Another option, "Random," can periodically choose a new color every x minutes, but this mode can be interrupted by selecting a new option from the dropdown.
 
 <br/>
 
@@ -258,7 +259,7 @@ The web interface displays a selection of colors and an option to turn off the l
 **To Do:**
 
 - TODO Add Holiday Based effects
-- TODO Add a color palette selector, instead of drop down
+- TODO Add a color palette selector, instead of a dropdown menu
 
 <br/>
 
