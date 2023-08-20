@@ -70,12 +70,6 @@ void setup() {
   connectToWiFi();
   server.begin();
 
-  Serial.print("SSID: ");
-  Serial.println(WiFi.SSID());
-  IPAddress ip = WiFi.localIP();
-  Serial.print("IP Address: ");
-  Serial.println(ip);
-
   populateColorMap();
   // seed the random function using a floating analog value
   randomSeed(analogRead(A0));
@@ -84,6 +78,7 @@ void setup() {
 void loop() {
 
   checkWiFi();
+  checkRandomMode();
 
   WiFiClient client = server.available();
   if (client) {
@@ -109,15 +104,6 @@ void loop() {
     }
   }
 
-  if (randomMode) {
-    unsigned long currentTime = millis();
-    if (currentTime - randomModeStartTime >= randomModeDuration) {
-      Serial.println("randomMode Active timer triggered");
-      randomModeStartTime = currentTime;
-      setRandomHue();
-    }
-  }
-
 }
 
 void checkWiFi() {
@@ -129,6 +115,7 @@ void checkWiFi() {
     connectToWiFi(); // Reconnect to Wi-Fi if connection is lost
     Serial.println("Wi-Fi reconnected.");
   }
+
 }
 
 void connectToWiFi() {
@@ -139,6 +126,34 @@ void connectToWiFi() {
     status = WiFi.begin(ssid, pass);
     delay(10000);
   }
+
+  Serial.print("SSID: ");
+  Serial.println(WiFi.SSID());
+  IPAddress ip = WiFi.localIP();
+  Serial.print("IP Address: ");
+  Serial.println(ip);
+
+}
+
+void manualDisconnect() {
+
+  // function exists for debugging disconnects
+  WiFi.disconnect(); // Disconnect from Wi-Fi
+  Serial.println("Manually disconnected from Wi-Fi.");
+
+}
+
+void checkRandomMode() {
+
+  if (randomMode) {
+    unsigned long currentTime = millis();
+    if (currentTime - randomModeStartTime >= randomModeDuration) {
+      Serial.println("randomMode Active timer triggered");
+      randomModeStartTime = currentTime;
+      setRandomHue();
+    }
+  }
+
 }
 
 void populateColorMap() {
