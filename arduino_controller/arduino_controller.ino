@@ -83,12 +83,7 @@ void setup() {
 
 void loop() {
 
-  if (WiFi.status() != WL_CONNECTED) {
-    Serial.println("Wi-Fi connection lost. Reconnecting...");
-    WiFi.disconnect();
-    connectToWiFi(); // Reconnect to Wi-Fi if connection is lost
-    Serial.println("Wi-Fi reconnected.");
-  }
+  checkWiFi();
 
   WiFiClient client = server.available();
   if (client) {
@@ -123,6 +118,17 @@ void loop() {
     }
   }
 
+}
+
+void checkWiFi() {
+
+  if (WiFi.status() != WL_CONNECTED) {
+    Serial.println("Wi-Fi connection lost. Reconnecting...");
+    WiFi.disconnect();
+    status = WL_IDLE_STATUS;
+    connectToWiFi(); // Reconnect to Wi-Fi if connection is lost
+    Serial.println("Wi-Fi reconnected.");
+  }
 }
 
 void connectToWiFi() {
