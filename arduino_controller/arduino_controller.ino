@@ -50,7 +50,6 @@ char pass[] = SECRET_PASSWORD;
 int keyIndex = 0;
 CRGB leds[NUM_LEDS];       // Second LED Strip
 CRGB ledsClone[NUM_LEDS];  // Second LED Strip
-int status = WL_IDLE_STATUS;
 WiFiServer server(80);
 String readString;
 std::map<String, CRGB> ledColors; // Hold the translations for the color selection to the CRGB LED color
@@ -58,40 +57,35 @@ bool randomMode = false;
 unsigned long randomModeStartTime = 0;
 unsigned long randomModeDuration = randomModeDurationMinutes * 60 * 1000; // limit to trigger in milliseconds
 
-void setup() {
+void setup(){
 
-  FastLED.addLeds<CHIP_SET, DATA_PIN, COLOR_ORDER> (leds,NUM_LEDS);
-  FastLED.addLeds<CHIP_SET, DATA_PIN_CLONE, COLOR_ORDER> (ledsClone,NUM_LEDS); // Second LED Strip
-  FastLED.setBrightness(BRIGHTNESS);
-  FastLED.setMaxPowerInVoltsAndMilliamps(MAX_VOLTS, MAX_AMPS);
+  LEDconfig();
   Serial.begin(BAUD);
-
   WiFi.config(setArduinoIP);
   connectToWiFi();
   server.begin();
-
   populateColorMap();
-  // seed the random function using a floating analog value
-  randomSeed(analogRead(A0));
+  randomSeed(analogRead(A0)); // seed the random function using a floating analog value
+
 }
 
-void loop() {
+void loop(){
 
   checkWiFi();
   checkRandomMode();
 
   WiFiClient client = server.available();
-  if (client) {
+  if (client){
     Serial.println("new client");
 
-    while (client.connected()) {
-      if (client.available()) {
+    while (client.connected()){
+      if (client.available()){
         char clientData = client.read();
-        if (readString.length() < 100) {
+        if (readString.length() < 100){
           readString += clientData;
           Serial.write(clientData);
 
-          if (clientData == '\n') {
+          if (clientData == '\n'){
 
             displayWebPage(client);
             parseClientData(readString);
@@ -106,21 +100,30 @@ void loop() {
 
 }
 
-void checkWiFi() {
+void LEDconfig(){
 
-  if (WiFi.status() != WL_CONNECTED) {
+  FastLED.addLeds<CHIP_SET, DATA_PIN, COLOR_ORDER> (leds,NUM_LEDS);
+  FastLED.addLeds<CHIP_SET, DATA_PIN_CLONE, COLOR_ORDER> (ledsClone,NUM_LEDS); // Second LED Strip
+  FastLED.setBrightness(BRIGHTNESS);
+  FastLED.setMaxPowerInVoltsAndMilliamps(MAX_VOLTS, MAX_AMPS);
+
+}
+
+void checkWiFi(){
+
+  if (WiFi.status() != WL_CONNECTED){
     Serial.println("Wi-Fi connection lost. Reconnecting...");
     WiFi.disconnect();
-    status = WL_IDLE_STATUS;
     connectToWiFi(); // Reconnect to Wi-Fi if connection is lost
     Serial.println("Wi-Fi reconnected.");
   }
 
 }
 
-void connectToWiFi() {
+void connectToWiFi(){
 
-  while (status != WL_CONNECTED) {
+  int status = WL_IDLE_STATUS;
+  while (status != WL_CONNECTED){
     Serial.print("Attempting to connect to Network named: ");
     Serial.println(ssid);
     status = WiFi.begin(ssid, pass);
@@ -135,7 +138,7 @@ void connectToWiFi() {
 
 }
 
-void manualDisconnect() {
+void manualDisconnect(){
 
   // function exists for debugging disconnects
   WiFi.disconnect(); // Disconnect from Wi-Fi
@@ -143,11 +146,11 @@ void manualDisconnect() {
 
 }
 
-void checkRandomMode() {
+void checkRandomMode(){
 
-  if (randomMode) {
+  if (randomMode){
     unsigned long currentTime = millis();
-    if (currentTime - randomModeStartTime >= randomModeDuration) {
+    if (currentTime - randomModeStartTime >= randomModeDuration){
       Serial.println("randomMode Active timer triggered");
       randomModeStartTime = currentTime;
       setRandomHue();
@@ -156,7 +159,7 @@ void checkRandomMode() {
 
 }
 
-void populateColorMap() {
+void populateColorMap(){
 
   // Populate the map with the translations for the color selection to the CRGB LED color
   ledColors = {
@@ -169,7 +172,7 @@ void populateColorMap() {
     {"Yellow", CRGB::Yellow}
   };
 
-  for (const auto& entry : ledColors) {
+  for (const auto& entry : ledColors){
     Serial.print("Color: ");
     Serial.print(entry.first); // Print the color name (key)
     Serial.print("  R:");
@@ -182,15 +185,15 @@ void populateColorMap() {
   
 }
 
-void setRandomHue() {
+void setRandomHue(){
   uint8_t hue = random(256);
   setHueLED(hue);
   delay(1);
 }
 
-void turnOffAll() {
+void turnOffAll(){
 
-  for(int i = (NUM_LEDS - 1); i >= 0; i--) {
+  for(int i = (NUM_LEDS - 1); i >= 0; i--){
     leds[i] = CRGB::Black; // turn off the i'th LED
     ledsClone[i] = CRGB::Black; // Second LED Strip
     FastLED.show();
@@ -198,9 +201,9 @@ void turnOffAll() {
   delay(1);
 }
 
-void lightUpColor(CRGB color) {
+void lightUpColor(CRGB color){
 
-  for(int i = 0; i < NUM_LEDS; i++) {
+  for(int i = 0; i < NUM_LEDS; i++){
     leds[i] = color;
     ledsClone[i] = color; // Second LED Strip
     FastLED.show();
@@ -208,9 +211,9 @@ void lightUpColor(CRGB color) {
   delay(1);
 }
 
-void setHueLED(uint8_t hue) {
+void setHueLED(uint8_t hue){
   turnOffAll();
-  for(int i = 0; i < NUM_LEDS; i++) {
+  for(int i = 0; i < NUM_LEDS; i++){
     leds[i].setHue(hue);
     ledsClone[i].setHue(hue); // Second LED Strip
     FastLED.show();
@@ -218,7 +221,7 @@ void setHueLED(uint8_t hue) {
   delay(1);
 }
 
-void displayWebPage(WiFiClient& client) {
+void displayWebPage(WiFiClient& client){
 
   client.println("<html>");
   client.println("<head>");
@@ -237,7 +240,7 @@ void displayWebPage(WiFiClient& client) {
   client.println("<select name=\"ledState\">");
 
   // Use the ledColors map to generate drop down options
-  for (const auto& entry : ledColors) {
+  for (const auto& entry : ledColors){
     client.print("<option value=\"");
     client.print(entry.first); // Use the Key
     client.println("\">" + entry.first + "</option>");
@@ -253,14 +256,14 @@ void displayWebPage(WiFiClient& client) {
   delay(1);
 }
 
-void parseClientData(const String& request) {
+void parseClientData(const String& request){
 
   // Check to make sure the ledStateIndex exists
   int ledStateIndex = request.indexOf("ledState=");
-  if (ledStateIndex >= 0) {
+  if (ledStateIndex >= 0){
     // Find the final index of the request to trim excess
     int ledStateEndIndex = request.indexOf(" ", ledStateIndex);
-    if (ledStateEndIndex == -1) {
+    if (ledStateEndIndex == -1){
       ledStateEndIndex = request.length(); // Use whole string when no match
     }
     // Get the ledState= value from the request find the CRGB translation in the map 
@@ -268,12 +271,12 @@ void parseClientData(const String& request) {
     String ledState = request.substring(ledStateIndex + 9, ledStateEndIndex);
     Serial.println("ledState: " + ledState);
     // Parse Request
-    if (ledState == "Random") {
+    if (ledState == "Random"){
       Serial.println("Random selection made");
       randomMode = true;
       randomModeStartTime = millis();
       setRandomHue();
-    } else {
+    } else{
       Serial.println("Static color selection made");
       randomMode = false;
       CRGB colorChoice = ledColors[ledState];
@@ -281,7 +284,7 @@ void parseClientData(const String& request) {
       lightUpColor(colorChoice);
     }
 
-  } else {
+  } else{
     Serial.println("No Selection Found");
   }
   readString = ""; // Clear the readString variable
