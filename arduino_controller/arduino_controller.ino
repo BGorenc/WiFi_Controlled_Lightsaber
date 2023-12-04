@@ -66,6 +66,7 @@ void setup(){
   server.begin();
   populateColorMap();
   randomSeed(analogRead(A0)); // seed the random function using a floating analog value
+  startRandomMode();
 
 }
 
@@ -73,31 +74,7 @@ void loop(){
 
   checkWiFi();
   checkRandomMode();
-
-  // put in function
-  WiFiClient client = server.available();
-  if (client){
-    Serial.println("new client");
-
-    while (client.connected()){
-      if (client.available()){
-        char clientData = client.read();
-        if (readString.length() < 100){
-          readString += clientData;
-          Serial.write(clientData);
-
-          if (clientData == '\n'){
-
-            displayWebPage(client);
-            parseClientData(readString);
-
-            client.stop();
-            Serial.println("client disconnected");
-          }
-        }
-      }
-    }
-  }
+  runWebServer();
 
 }
 
@@ -152,9 +129,38 @@ void checkRandomMode(){
   if (randomMode){
     unsigned long currentTime = millis();
     if (currentTime - randomModeStartTime >= randomModeDuration){
-      Serial.println("randomMode Active timer triggered");
+      Serial.println("Random Mode timer triggered");
       randomModeStartTime = currentTime;
       setRandomHue();
+    }
+  }
+
+}
+
+void runWebServer(){
+  
+  // serve client requests
+  WiFiClient client = server.available();
+  if (client){
+    Serial.println("new client");
+
+    while (client.connected()){
+      if (client.available()){
+        char clientData = client.read();
+        if (readString.length() < 100){
+          readString += clientData;
+          Serial.write(clientData);
+
+          if (clientData == '\n'){
+
+            displayWebPage(client);
+            parseClientData(readString);
+
+            client.stop();
+            Serial.println("client disconnected");
+          }
+        }
+      }
     }
   }
 
@@ -187,7 +193,10 @@ void populateColorMap(){
 }
 
 void setRandomHue(){
+
   uint8_t hue = random(256);
+  Serial.print("Random Hue: ");
+  Serial.println(hue);
   setHueLED(hue);
   delay(1);
 }
@@ -219,6 +228,15 @@ void setHueLED(uint8_t hue){
     ledsClone[i].setHue(hue); // Second LED Strip
     FastLED.show();
   }
+  delay(1);
+}
+
+void startRandomMode(){
+
+  Serial.println("Random Mode active");
+  randomMode = true;
+  randomModeStartTime = millis();
+  setRandomHue();
   delay(1);
 }
 
@@ -275,9 +293,7 @@ void parseClientData(const String& request){
     // Parse Request
     if (ledState == "Random"){
       Serial.println("Random selection made");
-      randomMode = true;
-      randomModeStartTime = millis();
-      setRandomHue();
+      startRandomMode();
     } else{
       Serial.println("Static color selection made");
       randomMode = false;
