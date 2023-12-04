@@ -31,8 +31,8 @@
 /* Settings for Arduino */
 #define DATA_PIN 2                               // First LED Pin
 #define DATA_PIN_CLONE 3                         // Second LED Pin
-#define setArduinoIP IPAddress(192, 168, 1, 150) // Set the IP address of the Arduino
-String webpageTitle = "Sith Lightsaber Control"; // Title for the webpage
+#define setArduinoIP IPAddress(192, 168, 1, 155) // Set the IP address of the Arduino
+String webpageTitle = "Test Lightsaber Control"; // Title for the webpage
 unsigned long randomModeDurationMinutes = 10;    // Set the duration in minutes
 
 /* Settings for LED Strip */
@@ -66,6 +66,7 @@ void setup(){
   server.begin();
   populateColorMap();
   randomSeed(analogRead(A0)); // seed the random function using a floating analog value
+  startRandomMode();
 
 }
 
@@ -73,30 +74,7 @@ void loop(){
 
   checkWiFi();
   checkRandomMode();
-
-  WiFiClient client = server.available();
-  if (client){
-    Serial.println("new client");
-
-    while (client.connected()){
-      if (client.available()){
-        char clientData = client.read();
-        if (readString.length() < 100){
-          readString += clientData;
-          Serial.write(clientData);
-
-          if (clientData == '\n'){
-
-            displayWebPage(client);
-            parseClientData(readString);
-
-            client.stop();
-            Serial.println("client disconnected");
-          }
-        }
-      }
-    }
-  }
+  runWebServer();
 
 }
 
@@ -151,9 +129,38 @@ void checkRandomMode(){
   if (randomMode){
     unsigned long currentTime = millis();
     if (currentTime - randomModeStartTime >= randomModeDuration){
-      Serial.println("randomMode Active timer triggered");
+      Serial.println("Random Mode timer triggered");
       randomModeStartTime = currentTime;
       setRandomHue();
+    }
+  }
+
+}
+
+void runWebServer(){
+  
+  // serve client requests
+  WiFiClient client = server.available();
+  if (client){
+    Serial.println("new client");
+
+    while (client.connected()){
+      if (client.available()){
+        char clientData = client.read();
+        if (readString.length() < 100){
+          readString += clientData;
+          Serial.write(clientData);
+
+          if (clientData == '\n'){
+
+            displayWebPage(client);
+            parseClientData(readString);
+
+            client.stop();
+            Serial.println("client disconnected");
+          }
+        }
+      }
     }
   }
 
@@ -186,7 +193,10 @@ void populateColorMap(){
 }
 
 void setRandomHue(){
+
   uint8_t hue = random(256);
+  Serial.print("Random Hue: ");
+  Serial.println(hue);
   setHueLED(hue);
   delay(1);
 }
@@ -221,10 +231,20 @@ void setHueLED(uint8_t hue){
   delay(1);
 }
 
+void startRandomMode(){
+
+  Serial.println("Random Mode active");
+  randomMode = true;
+  randomModeStartTime = millis();
+  setRandomHue();
+  delay(1);
+}
+
 void displayWebPage(WiFiClient& client){
 
   client.println("<html>");
   client.println("<head>");
+  client.println("<link rel='icon' href='data:;base64,iVBORw0KGgo='>");
   client.println("<title>" + webpageTitle + "</title>");
   client.println("<style>");
   client.println("body { background-color: #f2f2f2; font-family: Arial, sans-serif; }");
@@ -273,9 +293,7 @@ void parseClientData(const String& request){
     // Parse Request
     if (ledState == "Random"){
       Serial.println("Random selection made");
-      randomMode = true;
-      randomModeStartTime = millis();
-      setRandomHue();
+      startRandomMode();
     } else{
       Serial.println("Static color selection made");
       randomMode = false;
