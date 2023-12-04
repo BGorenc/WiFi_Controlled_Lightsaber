@@ -31,8 +31,8 @@
 /* Settings for Arduino */
 #define DATA_PIN 2                               // First LED Pin
 #define DATA_PIN_CLONE 3                         // Second LED Pin
-#define setArduinoIP IPAddress(192, 168, 1, 150) // Set the IP address of the Arduino
-String webpageTitle = "Sith Lightsaber Control"; // Title for the webpage
+#define setArduinoIP IPAddress(192, 168, 1, 155) // Set the IP address of the Arduino
+String webpageTitle = "Test Lightsaber Control"; // Title for the webpage
 unsigned long randomModeDurationMinutes = 10;    // Set the duration in minutes
 
 /* Settings for LED Strip */
@@ -226,6 +226,7 @@ void displayWebPage(WiFiClient& client){
 
   client.println("<html>");
   client.println("<head>");
+  client.println("<link rel='icon' href='data:;base64,iVBORw0KGgo='>");
   client.println("<title>" + webpageTitle + "</title>");
   client.println("<style>");
   client.println("body { background-color: #f2f2f2; font-family: Arial, sans-serif; }");
