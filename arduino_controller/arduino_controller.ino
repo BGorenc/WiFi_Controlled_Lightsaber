@@ -74,6 +74,7 @@ void loop(){
   checkWiFi();
   checkRandomMode();
 
+  // put in function
   WiFiClient client = server.available();
   if (client){
     Serial.println("new client");
