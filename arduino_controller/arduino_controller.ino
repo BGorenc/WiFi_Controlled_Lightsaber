@@ -276,7 +276,7 @@ void displayWebPage(WiFiClient& client){
   client.println("</html>");
   delay(1);
   */
-
+  /*
   client.println("<html>");
   client.println("<head>");
   client.println("<link rel='icon' href='data:;base64,iVBORw0KGgo='>");
@@ -307,6 +307,43 @@ void displayWebPage(WiFiClient& client){
   client.println("</body>");
   client.println("</html>");
   delay(1);
+  */
+
+  client.println("<html>");
+  client.println("<head>");
+  client.println("<link rel='icon' href='data:;base64,iVBORw0KGgo='>");
+  client.println("<title>" + webpageTitle + "</title>");
+  client.println("<style>");
+  client.println("body { background-color: #f2f2f2; font-family: Arial, sans-serif; }");
+  client.println("h1 { color: #333333; text-align: center; }");
+  client.println("form { text-align: center; }");
+  client.println(".color-slider { width: 80%; margin: auto; background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); border-radius: 10px; padding: 10px; }");
+  client.println("input[type='range'] { width: 100%; margin: 5px 0; }");
+  client.println("input[type='number'] { width: 60px; margin-left: 10px; font-size: 18px; }"); // Style for the number input
+  client.println("input[type='submit'] { padding: 10px 20px; font-size: 18px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }");
+  client.println("input[type='button'] { padding: 10px 20px; font-size: 18px; background-color: red; color: white; border: none; cursor: pointer; }"); // Style for the TurnOff button
+  client.println("</style>");
+  client.println("</head>");
+  client.println("<body>");
+  client.println("<h1>" + webpageTitle + "</h1>");
+  client.println("<form method=\"get\" action=\"\">");
+  client.println("<div class=\"color-slider\">");
+  client.println("<input type=\"range\" name=\"ledHue\" min=\"0\" max=\"255\" value=\"128\" onchange=\"updateSliderValue(this.value)\">");
+  client.println("<input type=\"number\" name=\"ledHue\" id=\"ledHueNumber\" min=\"0\" max=\"255\" value=\"128\" oninput=\"updateSliderValue(this.value)\">"); // Added a number input
+  client.println("</div>");
+  client.println("<br><br>");
+  client.println("<input type=\"submit\" value=\"Submit\">");
+  client.println("<br><br>");
+  client.println("<input type=\"button\" value=\"TurnOff\" onclick=\"turnOffLED()\">");
+  client.println("</form>");
+  client.println("<script>");
+  client.println("function updateSliderValue(value) { document.getElementById('ledHueNumber').value = value; document.querySelector('[name=\"ledHue\"]').value = value; }"); // JavaScript to update the value dynamically
+  client.println("function turnOffLED() { window.location.href = '/?ledHue=1'; }"); // JavaScript function for TurnOff button to send a GET request with value 1
+  client.println("</script>");
+  client.println("</body>");
+  client.println("</html>");
+  delay(1);
+
 
 }
 
