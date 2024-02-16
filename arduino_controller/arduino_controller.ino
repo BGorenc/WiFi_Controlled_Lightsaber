@@ -52,7 +52,6 @@ CRGB leds[NUM_LEDS];       // Second LED Strip
 CRGB ledsClone[NUM_LEDS];  // Second LED Strip
 WiFiServer server(80);
 String readString;
-std::map<String, CRGB> ledColors; // Hold the translations for the color selection to the CRGB LED color
 bool randomMode = false;
 unsigned long randomModeStartTime = 0;
 unsigned long randomModeDuration = randomModeDurationMinutes * 60 * 1000; // limit to trigger in milliseconds
@@ -64,7 +63,6 @@ void setup(){
   WiFi.config(setArduinoIP);
   connectToWiFi();
   server.begin();
-  populateColorMap();
   randomSeed(analogRead(A0)); // seed the random function using a floating analog value
   startRandomMode();
 
@@ -167,32 +165,6 @@ void runWebServer(){
 
 }
 
-void populateColorMap(){
-
-  // Populate the map with the translations for the color selection to the CRGB LED color
-  ledColors = {
-    {"AllOff", CRGB::Black},
-    {"Green", CRGB::Green},
-    {"Red", CRGB::Red},
-    {"Pink", CRGB::DeepPink},
-    {"Blue", CRGB::Blue},
-    {"Purple", CRGB::DarkViolet},
-    {"Yellow", CRGB::Yellow}
-  };
-
-  for (const auto& entry : ledColors){
-    Serial.print("Color: ");
-    Serial.print(entry.first); // Print the color name (key)
-    Serial.print("  R:");
-    Serial.print(entry.second.r); // Print the red component of the color (value)
-    Serial.print("  G:");
-    Serial.print(entry.second.g); // Print the green component of the color (value)
-    Serial.print("  B:");
-    Serial.println(entry.second.b); // Print the blue component of the color (value)
-  }
-  
-}
-
 void setRandomHue(){
 
   uint8_t hue = random(256);
@@ -200,6 +172,7 @@ void setRandomHue(){
   Serial.println(hue);
   setHueLED(hue);
   delay(1);
+
 }
 
 void turnOffAll(){
@@ -210,19 +183,11 @@ void turnOffAll(){
     FastLED.show();
   }
   delay(1);
-}
 
-void lightUpColor(CRGB color){
-
-  for(int i = 0; i < NUM_LEDS; i++){
-    leds[i] = color;
-    ledsClone[i] = color; // Second LED Strip
-    FastLED.show();
-  }
-  delay(1);
 }
 
 void setHueLED(uint8_t hue){
+  
   turnOffAll();
   for(int i = 0; i < NUM_LEDS; i++){
     leds[i].setHue(hue);
@@ -230,6 +195,7 @@ void setHueLED(uint8_t hue){
     FastLED.show();
   }
   delay(1);
+
 }
 
 void startRandomMode(){
@@ -239,6 +205,7 @@ void startRandomMode(){
   randomModeStartTime = millis();
   setRandomHue();
   delay(1);
+
 }
 
 void displayWebPage(WiFiClient& client){
@@ -248,30 +215,43 @@ void displayWebPage(WiFiClient& client){
   client.println("<link rel='icon' href='data:;base64,iVBORw0KGgo='>");
   client.println("<title>" + webpageTitle + "</title>");
   client.println("<style>");
-  client.println("body { background-color: #f2f2f2; font-family: Arial, sans-serif; }");
+  client.println("body { background-color: #E7E9EB; font-family: Arial, sans-serif; }");
   client.println("h1 { color: #333333; text-align: center; }");
   client.println("form { text-align: center; }");
   client.println(".color-slider { width: 80%; margin: auto; background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); border-radius: 10px; padding: 10px; accent-color: gray; }");
   client.println("input[type='range'] { width: 100%; margin: 5px 0; }");
   client.println("input[type='number'] { width: 60px; margin-left: 10px; font-size: 18px; }"); // Style for the number input
-  client.println("input[type='submit'] { padding: 10px 20px; font-size: 18px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }");
+  client.println("input[type='submit'] { padding: 10px 20px; font-size: 18px; background-color: gray; color: white; border: none; cursor: pointer; }");
   client.println("input[type='button'] { padding: 10px 20px; font-size: 18px; background-color: red; color: white; border: none; cursor: pointer; }"); // Style for the TurnOff button
+  client.println("p.one { border: 2px solid black; padding: 20px; }"); // Border
   client.println("</style>");
   client.println("</head>");
+  // Start body and print Webpage Title
   client.println("<body>");
   client.println("<h1>" + webpageTitle + "</h1>");
+  client.println("<br><br>");
+  // Set up slider color selection
   client.println("<form method=\"get\" action=\"\" onsubmit=\"return false;\">"); // prevent HTML form from being resubmitted when server sends back
   client.println("<div class=\"color-slider\">");
   client.println("<input type=\"range\" name=\"ledState\" min=\"0\" max=\"255\" value=\"128\" onchange=\"updateSliderValue(this.value)\">");
   client.println("<input type=\"number\" name=\"ledState\" id=\"ledStateNumber\" min=\"0\" max=\"255\" value=\"128\" oninput=\"updateSliderValue(this.value)\">"); // Added a number input
+  client.println("<br><br>");
+  client.println("<input type=\"submit\" value=\"Select Color\" onclick=\"staticColor()\">");
   client.println("</div>");
   client.println("<br><br>");
-  client.println("<input type=\"submit\" value=\"Static Color\" onclick=\"staticColor()\">");
+  client.println("To choose a fixed color that remains constant, adjust the slider to the desired color reflected in the slider's background. Alternatively, you can input a value between 0 and 255 to correspond to a color matching the slider background.");
+  // Set up Random mode button
   client.println("<br><br>");
+  client.println("<p class='one'>"); // Start Random button a border
   client.println("<input type=\"submit\" value=\"Random Mode\" onclick=\"randomMode()\">");
+  client.println("<br><br>");
+  client.println("<b>Random Mode</b> will automatically select a random color every <b>" + String(randomModeDurationMinutes) + " minutes</b>. <i>Please note that this option will overwrite any other color selections.</i>");
+  client.println("</p>"); // End Random button a border
+  // Set up Turn Off button
   client.println("<br><br>");
   client.println("<input type=\"button\" value=\"TurnOff\" onclick=\"turnOffLED()\">");
   client.println("</form>");
+  // support scripts
   client.println("<script>");
   client.println("function updateSliderValue(value) { document.getElementById('ledStateNumber').value = value; document.querySelector('[name=\"ledState\"]').value = value; }"); // JavaScript to update the value dynamically
   client.println("function randomMode() { window.location.href = '/?ledState=Random'; }"); // JavaScript function for TurnOff Random
@@ -281,9 +261,8 @@ void displayWebPage(WiFiClient& client){
   client.println("</body>");
   client.println("</html>");
   delay(1);
-
+  
 }
-
 
 void parseClientData(const String& request){
 
@@ -295,8 +274,7 @@ void parseClientData(const String& request){
     if (ledStateEndIndex == -1){
       ledStateEndIndex = request.length(); // Use whole string when no match
     }
-    // Get the ledState= value from the request find the CRGB translation in the map 
-    // Trigger the turn off current color animation and light up the new color
+    // Get the ledState= value
     String ledState = request.substring(ledStateIndex + 9, ledStateEndIndex);
     Serial.println("ledState: " + ledState);
     // Parse Request
@@ -305,18 +283,18 @@ void parseClientData(const String& request){
       startRandomMode();
     } else if (ledState == "TurnOff") {
       Serial.println("Turn Off Lightsaber");
+      randomMode = false;
       turnOffAll();
     } else{
       Serial.println("Static color selection made");
       randomMode = false;
-      CRGB colorChoice = ledColors[ledState];
-      turnOffAll();
-      lightUpColor(colorChoice);
+      uint8_t hueValue = ledState.toInt();
+      setHueLED(hueValue);
     }
-
   } else{
     Serial.println("No Selection Found");
   }
   readString = ""; // Clear the readString variable
   delay(1);
+
 }
