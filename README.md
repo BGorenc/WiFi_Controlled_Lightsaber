@@ -220,7 +220,7 @@ The web interface displays a slider whose background color gradient correspondin
 
 1. Connect the WS2812B LED strips to the DATA_PIN and DATA_PIN_CLONE pins defined in the code.
 2. Adjust the LED strip setup values according to your specific configuration (number of LEDs, chip set, color order, brightness, maximum voltage, maximum amps, and IP Address).
-    - Also consider customizing the webpage title and the time interval for color changes in "Random" mode.
+    - Also consider customizing the webpage title and the time interval for color changes in "Random Mode".
 3. Modify the arduino_secrets.h file to include your network's SSID and password for WiFi connection.
 4. Upload the code to the Arduino Nano 33 IoT board.
 5. Navigate to web interface by placing the IP address you set for the arduino in the URL location of a browser. Use the web interface to control your lightsaber using the interface seen in Fig.8 below.
