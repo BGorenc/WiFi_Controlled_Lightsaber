@@ -212,14 +212,18 @@ When powered on in the setup() section the program initializes the LED strips, s
 
 The Arduino's hosted web interface allows users to control the lightsaber (ie. change color, turn the lightsaber LEDs off, and random color mode that changes the color every x minutes). When a client connects to the server, the program checks for incoming data. If there is data available, it reads the data and processes the commands. The program interprets the received commands and performs the corresponding actions to control the lightsaber's state and color. This is done through the use of simple GET requests that are submitted through a form from the client.
 
-The web interface displays a slider whose background color gradient corresponding to the available color options. Also, a "Random Mode" button can be selected that will randomize the color of the lightsaber every x amount of minutes. Additionally, a "Turn Off" button can be used to turn the LED lights off. When a user selects an option and submits the form, the program updates the LED strips accordingly with an appropriate lightsaber styled power on/off animation.
+**The web interface provides 3 ways to control the lightsaber.** Each option updates the LED strips accordingly with an appropriate lightsaber styled power on/off animation. 
+ - <ins>Static Color Selection:</ins> A slider whose background color gradient corresponding to the available color options. This option allows for selecting a color that remains constant and does not change over time.
+ - <ins>Random Mode:</ins> Will randomize the color of the lightsaber every x minutes (*default is 10*). 
+ - <ins>Turn Off:</ins> Used to turn the LED lights off. (*This option does not power down the Arduino*)
+
 
 <br/>
 
 ## Operation
 
 1. Connect the WS2812B LED strips to the DATA_PIN and DATA_PIN_CLONE pins defined in the code.
-2. Adjust the LED strip setup values according to your specific configuration (number of LEDs, chip set, color order, brightness, maximum voltage, maximum amps, and IP Address).
+2. Configure the settings for the Arduino and LED strip according to your specific configuration (number of LEDs, chip set, color order, brightness, maximum voltage, maximum amps, and IP Address).
     - Also consider customizing the webpage title and the time interval for color changes in "Random Mode".
 3. Modify the arduino_secrets.h file to include your network's SSID and password for WiFi connection.
 4. Upload the code to the Arduino Nano 33 IoT board.
