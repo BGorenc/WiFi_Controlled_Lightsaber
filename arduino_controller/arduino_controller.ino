@@ -218,7 +218,6 @@ void displayWebPage(WiFiClient& client){
   client.println("body { background-color: #E7E9EB; font-family: Arial, sans-serif; }");
   client.println("h1 { color: #333333; text-align: center; }");
   client.println("form { text-align: center; }");
-  //client.println(".color-slider { width: 80%; margin: auto; background: linear-gradient(to right, red, orange, yellow, green, aqua, blue, purple, pink, red); border-radius: 10px; padding: 10px; accent-color: gray; }");
   client.println(".color-slider { width: 80%; margin: auto; background: linear-gradient(to right, red, orange, yellow, green, aqua, blue, purple, pink, red); border-radius: 10px; padding-top: 10px; padding-bottom: 20px; padding-left: 0px; padding-right: 0px; accent-color: gray; }");
   client.println("input[type='range'] { width: 100%; margin: 5px 0; }");
   client.println("input[type='number'] { width: 60px; margin-left: 10px; font-size: 18px; }"); // Style for the number input
