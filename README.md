@@ -200,31 +200,37 @@ The program has two files. The first file is **arduino_secrets.h**. This file is
 
     git update-index --assume-unchanged .\arduino_controller\arduino_secrets.h 
 
-The next file where the brunt of everything happens is the **arduino_controller.ino** file. This file makes use of 4 libraries.
+The next file where the brunt of everything happens is the **arduino_controller.ino** file. This file makes use of 3 libraries.
 
 1. **SPI.h:** Enables Serial Peripheral Interface (SPI) communication. This communication is used in the WiFiNINA library and is essentially a dependency even though it is not invoked directly in the code.
 2. **WiFiNINA.h:** Provides WiFi functionality for connecting to networks and hosting the small server used to control the Arduino.
 3. **FastLED.h:** Controls the WS2812B LED strips gives the capability to change colors and turning LED strips on/off.
-4. **map:** The map is used to store static color options so that they can be easily added and removed as options in the dropdown menu.
 
 The program uses the FastLED library to control the WS2812B LED strips. The LED strips are connected to the Arduino Nano 33 IoT board, with one strip connected to the DATA_PIN and the other strip connected to DATA_PIN_CLONE. The program supports a single lightsaber with two identical LED strips.
 
-When powered on in the setup() section the program initializes the LED strips, sets the brightness and power limits, and starts the serial communication. However, the most critical component is setting the IP address of the Arduino, otherwise you won't know the IP of your Arduino. Even if you went through the trouble of figuring it out there is no guarantee your router will always assign the same IP. Once these steps are done, then the arduino attempts to connect to the configured WiFi network using the WiFiNINA module. Once connected, it starts a server on port 80 to host a small simple web interface accessible by placing the IP address you set into the URL of any browser on the same network. If connection is lost the code should attempt to reconnect to the WiFi. There does seem to be an intermittent issue of losing a connection that is the fault of either the WiFiNINA library or the WiFi chip of the Arduino. Luckily, this can often be resolved by programming the Arduino to automatically reconnect when the connection is lost, as demonstrated in this code.
+When powered on in the setup() section the program initializes the LED strips, sets the brightness and power limits, and starts the serial communication. However, the most critical component is setting the IP address of the Arduino. This makes sure you always have a fixed IP address for your Arduino, rather than allowing it to be assigned a random IP address. Even if you went through the trouble of figuring it out there is no guarantee your router will always assign the same IP. Once these steps are done, then the arduino attempts to connect to the configured WiFi network using the WiFiNINA module. Once connected, it starts a server on port 80 to host a small simple web interface accessible by placing the IP address you set into the URL of any browser on the same network. If connection is lost the code will attempt to reconnect to the WiFi. 
 
-The Arduino's hosted web interface allows users to control the lightsaber (ie. change color, toggle off, and random color mode every x minutes). When a client connects to the server, the program checks for incoming data. If there is data available, it reads the data and processes the commands. The program interprets the received commands and performs the corresponding actions to control the lightsaber's state and color. This is done through the use of simple GET requests that are submitted through a form from the client.
+The Arduino's hosted web interface allows users to control the lightsaber (ie. change color, turn the lightsaber LEDs off, and random color mode that changes the color every x minutes). When a client connects to the server, the program checks for incoming data. If there is data available, it reads the data and processes the commands. The program interprets the received commands and performs the corresponding actions to control the lightsaber's state and color. This is done through the use of simple GET requests that are submitted through a form from the client.
 
-The web interface displays a selection of colors and an option to turn off the lightsaber and can be easily customized. When a user selects a color or the turn off option and submits the form, the program updates the LED strips accordingly with an appropriate lightsaber styled power on/off animation. Another option, "Random," can periodically choose a new color every x minutes, but this mode can be interrupted by selecting a new option from the dropdown.
+**The web interface offers multiple methods to operate the lightsaber, each are detailed below:**
+
+ - <ins>Static Color Selection:</ins> A slider whose background color gradient corresponding to the available color options. This option allows for selecting a color that remains constant and does not change over time.
+ - <ins>Random Mode:</ins> Will randomize the color of the lightsaber every x minutes (*default is 10*). 
+ - <ins>Turn Off:</ins> Used to turn the LED lights off. (*This option does not power down the Arduino*)
+
+ Each option updates the LED strips accordingly with an appropriate lightsaber styled power on/off animation.
+
 
 <br/>
 
 ## Operation
 
 1. Connect the WS2812B LED strips to the DATA_PIN and DATA_PIN_CLONE pins defined in the code.
-2. Adjust the LED strip setup values according to your specific configuration (number of LEDs, chip set, color order, brightness, maximum voltage, maximum amps, and IP Address).
-    - Also consider customizing the webpage title and the time interval for color changes in "Random" mode.
+2. Configure the settings for the Arduino and LED strip according to your specific configuration (number of LEDs, chip set, color order, brightness, maximum voltage, maximum amps, and IP Address).
+    - Also consider customizing the webpage title and the time interval for color changes in "Random Mode".
 3. Modify the arduino_secrets.h file to include your network's SSID and password for WiFi connection.
 4. Upload the code to the Arduino Nano 33 IoT board.
-5. Navigate to web interface by placing the IP address you set for the arduino in the URL location of a browser. Use the web interface to control your lightsabers from the dropdown menu like in Fig.8 below.
+5. Navigate to web interface by placing the IP address you set for the arduino in the URL location of a browser. Use the web interface to control your lightsaber using the interface seen in Fig.8 below.
 
 <br/>
 
@@ -259,7 +265,8 @@ The web interface displays a selection of colors and an option to turn off the l
 **To Do:**
 
 - TODO Add Holiday Based effects
-- TODO Add a color palette selector, instead of a dropdown menu
+- TODO Beautify the web interface
+- TODO Add ability to augment "Random Mode" color change intervals through web interface
 
 <br/>
 
