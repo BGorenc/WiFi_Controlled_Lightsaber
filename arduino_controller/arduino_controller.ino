@@ -23,9 +23,8 @@
 
 #include <SPI.h>
 #include <WiFiNINA.h>
-#include "arduino_secrets.h"
 #include <FastLED.h>
-#include <map>
+#include "arduino_secrets.h"
 
 /* **********************SETTINGS********************** */
 /* Settings for Arduino */
@@ -251,7 +250,7 @@ void displayWebPage(WiFiClient& client){
   client.println("</p>"); // End Random button a border
   // Set up Turn Off button
   client.println("<br><br>");
-  client.println("<input type=\"button\" value=\"TurnOff\" onclick=\"turnOffLED()\">");
+  client.println("<input type=\"button\" value=\"Turn Off\" onclick=\"turnOffLED()\">");
   client.println("</form>");
   // support scripts
   client.println("<script>");
