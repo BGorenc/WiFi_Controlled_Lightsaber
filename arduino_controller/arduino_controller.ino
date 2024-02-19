@@ -240,13 +240,15 @@ void displayWebPage(WiFiClient& client){
   client.println("<input type=\"submit\" value=\"Select Color\" onclick=\"staticColor()\">");
   client.println("</div>");
   client.println("<br><br>");
-  client.println("To choose a fixed color that remains constant, adjust the slider to the desired color reflected in the slider's background. Alternatively, you can input a value between 0 and 255 to correspond to a color matching the slider background.");
+  client.println("To choose a fixed color that remains constant, adjust the slider to the desired color reflected in the slider's background, then click 'Select Color'. Alternatively, you can enter a value between 0 and 255 to precisely match the color displayed in the slider background.");
   // Set up Random mode button
   client.println("<br><br>");
   client.println("<p class='one'>"); // Start Random button a border
   client.println("<input type=\"submit\" value=\"Random Mode\" onclick=\"randomMode()\">");
   client.println("<br><br>");
-  client.println("<b>Random Mode</b> will automatically select a random color every <b>" + String(randomModeDurationMinutes) + " minutes</b>. This mode is the default setting when powering on the lightsaber. <i>Please note that this option will overwrite any other color selections.</i>");
+  client.println("<b>Random Mode</b> will automatically select a random color every <b>" + String(randomModeDurationMinutes) + " minutes</b>. This mode is the default setting when powering on the lightsaber.");
+  client.println("<br>");
+  client.println("<i>Please note that this option will overwrite any other color selections.</i>");
   client.println("</p>"); // End Random button a border
   // Set up Turn Off button
   client.println("<br><br>");
