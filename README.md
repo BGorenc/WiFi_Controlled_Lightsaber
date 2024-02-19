@@ -259,6 +259,7 @@ The web interface displays a slider whose background color gradient correspondin
 
 - TODO Add Holiday Based effects
 - TODO Beautify the web interface
+- TODO Add ability to augment "Random Mode" color change intervals through web interface
 
 <br/>
 
