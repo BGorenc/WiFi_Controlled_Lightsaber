@@ -209,90 +209,87 @@ void startRandomMode(){
 
 void displayWebPage(WiFiClient& client){
 
-  client.println("<!DOCTYPE html>");
-  client.println("<html lang='en'>");
-  client.println("<head>");
-  client.println("  <meta charset='UTF-8'>");
-  client.println("  <meta name='viewport' content='width=device-width, initial-scale=1.0'>");
-  client.println("  <link rel='icon' href='data:;base64,iVBORw0KGgo='>");
-  client.println("  <title>" + webpageTitle + "</title>");
-  client.println("  <style>");
-  client.println("    body { background-color: #E7E9EB; font-family: Arial, sans-serif; }");
-  client.println("    h1 { color: #333333; text-align: center; }");
-  client.println("    form { text-align: center; }");
-  client.println("    .color-slider {");
-  client.println("      width: 80%;");
-  client.println("      margin: auto;");
-  client.println("      background: linear-gradient(to right, red, orange, yellow, green, aqua, blue, purple, pink, red);");
-  client.println("      border-radius: 10px;");
-  client.println("      padding: 10px 0 20px;");
-  client.println("      accent-color: gray;");
-  client.println("    }");
-  client.println("    input[type='range'] { width: 100%; margin: 5px 0; }");
-  client.println("    input[type='number'] { width: 60px; margin-left: 10px; font-size: 18px; }"); // Style for the number input
-  client.println("    input[type='submit'], input[type='button'] {");
-  client.println("      padding: 10px 20px;");
-  client.println("      font-size: 18px;");
-  client.println("      color: white;");
-  client.println("      border: none;");
-  client.println("      cursor: pointer;");
-  client.println("    }");
-  client.println("    input[type='submit'] { background-color: gray; }");
-  client.println("    input[type='button'] { background-color: red; }"); // Style for the TurnOff button
-  client.println("    p.one { border: 2px solid black; padding: 20px; }"); // Border
-  client.println("  </style>");
-  client.println("</head>");
-  // Start body and print Webpage Title
-  client.println("<body>");
-  client.println("  <h1>" + webpageTitle + "</h1>");
-  client.println("  <br><br>");
-  // Set up slider color selection
-  client.println("  <form method='get' action='' onsubmit='return false;'>");
-  client.println("    <div class='color-slider'>");
-  client.println("      <input type='range' name='ledState' min='0' max='255' value='128' onchange='updateSliderValue(this.value)'>");
-  client.println("      <input type='number' name='ledState' id='ledStateNumber' min='0' max='255' value='128' oninput='updateSliderValue(this.value)'>");
-   // Set up Select Color button
-  client.println("      <br><br>");
-  client.println("      <input type='submit' value='Select Color' onclick='staticColor()'>");
-  client.println("    </div>");
-  client.println("    <br><br>");
-  client.println("    To choose a fixed color that remains constant, adjust the slider to the desired color reflected in the slider's background, then click 'Select Color'. Alternatively, you can enter a value between 0 and 255 to precisely match the color displayed in the slider background.");
-   // Set up Random mode button
-  client.println("    <br><br>");
-  client.println("    <p class='one'>"); // Start Random button a border
-  client.println("      <input type='submit' value='Random Mode' onclick='randomMode()'>");
-  client.println("      <br><br>");
-  client.println("      <b>Random Mode</b> will automatically select a random color every <b>" + String(randomModeDurationMinutes) + " minutes</b>. This mode is the default setting when powering on the lightsaber.");
-  client.println("      <br>");
-  client.println("      <i>Please note that this option will overwrite any other color selections.</i>");
-  client.println("    </p>"); // End Random button a border
-  // Set up Turn Off button
-  client.println("    <br><br>");
-  client.println("    <input type='button' value='Turn Off' onclick='turnOffLED()'>");
-  client.println("  </form>");
-  // support scripts
-  client.println("  <script>");
-  client.println("    function updateSliderValue(value) {");
-  client.println("      document.getElementById('ledStateNumber').value = value;");
-  client.println("      document.querySelector('[name=\"ledState\"]').value = value;");
-  client.println("    }");
-  client.println("    function randomMode() {");
-  client.println("      window.location.href = '/?ledState=Random';");
-  client.println("    }");
-  client.println("    function turnOffLED() {");
-  client.println("      window.location.href = '/?ledState=TurnOff';");
-  client.println("    }");
-  client.println("    function staticColor() {");
-  client.println("      window.location.href = '/?ledState=' + document.querySelector('[name=\"ledState\"]').value;");
-  client.println("    }");
-  client.println("    window.onload = function() {");
-  client.println("      if(window.location.search) {");
-  client.println("        history.replaceState(null, '', '/');");
-  client.println("      }");
-  client.println("    }");
-  client.println("  </script>");
-  client.println("</body>");
-  client.println("</html>");
+  client.println(R"rawliteral(
+  <!DOCTYPE html>
+  <html lang='en'>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='icon' href='data:;base64,iVBORw0KGgo='>
+    <title>)rawliteral" + webpageTitle + R"rawliteral(</title>
+    <style>
+      body { background-color: #E7E9EB; font-family: Arial, sans-serif; }
+      h1 { color: #333333; text-align: center; }
+      form { text-align: center; }
+      .color-slider {
+        width: 80%;
+        margin: auto;
+        background: linear-gradient(to right, red, orange, yellow, green, aqua, blue, purple, pink, red);
+        border-radius: 10px;
+        padding: 10px 0 20px;
+        accent-color: gray;
+      }
+      input[type='range'] { width: 100%; margin: 5px 0; }
+      input[type='number'] { width: 60px; margin-left: 10px; font-size: 18px; }
+      input[type='submit'], input[type='button'] {
+        padding: 10px 20px;
+        font-size: 18px;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      input[type='submit'] { background-color: gray; }
+      input[type='button'] { background-color: red; }
+      p.one { border: 2px solid black; padding: 20px; }
+    </style>
+  </head>
+  <body>
+    <h1>)rawliteral" + webpageTitle + R"rawliteral(</h1>
+    <br><br>
+    <form method='get' action='' onsubmit='return false;'>
+      <div class='color-slider'>
+        <input type='range' name='ledState' min='0' max='255' value='128' onchange='updateSliderValue(this.value)'>
+        <input type='number' name='ledState' id='ledStateNumber' min='0' max='255' value='128' oninput='updateSliderValue(this.value)'>
+        <br><br>
+        <input type='submit' value='Select Color' onclick='staticColor()'>
+      </div>
+      <br><br>
+      To choose a fixed color that remains constant, adjust the slider to the desired color reflected in the slider's background, then click 'Select Color'. Alternatively, you can enter a value between 0 and 255 to precisely match the color displayed in the slider background.
+      <br><br>
+      <p class='one'>
+        <input type='submit' value='Random Mode' onclick='randomMode()'>
+        <br><br>
+        <b>Random Mode</b> will automatically select a random color every <b>)rawliteral" + String(randomModeDurationMinutes) + R"rawliteral( minutes</b>. This mode is the default setting when powering on the lightsaber.
+        <br>
+        <i>Please note that this option will overwrite any other color selections.</i>
+      </p>
+      <br><br>
+      <input type='button' value='Turn Off' onclick='turnOffLED()'>
+    </form>
+    
+    <script>
+      function updateSliderValue(value) {
+        document.getElementById('ledStateNumber').value = value;
+        document.querySelector('[name="ledState"]').value = value;
+      }
+      function randomMode() {
+        window.location.href = '/?ledState=Random';
+      }
+      function turnOffLED() {
+        window.location.href = '/?ledState=TurnOff';
+      }
+      function staticColor() {
+        window.location.href = '/?ledState=' + document.querySelector('[name="ledState"]').value;
+      }
+      window.onload = function() {
+        if(window.location.search) {
+          history.replaceState(null, '', '/');
+        }
+      }
+    </script>
+  </body>
+  </html>
+  )rawliteral");
   delay(1);
   
 }
