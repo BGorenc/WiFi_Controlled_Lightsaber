@@ -20,5 +20,13 @@
 * If not, see https://www.gnu.org/licenses/gpl-3.0.html.
 */
 
+
+/* **********************SETTINGS********************** */
+/* Settings for WiFi */
 #define SECRET_SSID "enter SSID"
 #define SECRET_PASSWORD "enter Password"
+
+/* Settings for Arduino IP and Web page title */
+#define SET_ARDUINO_IP IPAddress(xxx, xxx, x, xxx)
+#define WEBPAGE_TITLE "Lightsaber Control"
+/* **********************SETTINGS********************** */
