@@ -23,10 +23,10 @@
 
 /* **********************SETTINGS********************** */
 /* Settings for WiFi */
-#define SECRET_SSID "enter SSID"
-#define SECRET_PASSWORD "enter Password"
+#define SECRET_SSID "Enter SSID"
+#define SECRET_PASSWORD "Enter Password"
 
 /* Settings for Arduino IP and Web page title */
 #define SET_ARDUINO_IP IPAddress(xxx, xxx, x, xxx)
-#define WEBPAGE_TITLE "Lightsaber Control"
+#define WEBPAGE_TITLE "Enter Web Page Title"
 /* **********************SETTINGS********************** */
