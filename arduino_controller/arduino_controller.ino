@@ -24,7 +24,7 @@
 #include <SPI.h>
 #include <WiFiNINA.h>
 #include <FastLED.h>
-#include "arduino_secrets.h"
+#include "webserver_config.h"
 
 /* **********************SETTINGS********************** */
 /* Settings for Arduino */
