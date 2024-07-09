@@ -196,9 +196,9 @@ If at this point you feel that when assembled the JST connection wires are too l
 
 > It is important to note that this arduino can not connect to 5 GHz Wi-Fi frequency and will need a 2.4 GHz signal to operate.
 
-The program has two files. The first file is **arduino_secrets.h**. This file is used to enter your network SSID and Password. The file should not be tracked in the repository for what should be obvious reasons. It is an attempt to decouple your network name and password from the code it self. If you plan to work on this code with git I must stress you **make sure arduino_secrets.h is not being tracked** by git so that you don't accidentally push it with your password. If the file is being tracked you can use the command below to force git to stop tracking it.
+The program has two files. The first file is **webserver_config.h**. This file is used to enter your network SSID and Password. The file should not be tracked in the repository for what should be obvious reasons. It is an attempt to decouple your network name and password from the code it self. If you plan to work on this code with git I must stress you **make sure webserver_config.h is not being tracked** by git so that you don't accidentally push it with your password. If the file is being tracked and you want some peace of mind you can use the command below to force git to stop tracking it.
 
-    git update-index --assume-unchanged .\arduino_controller\arduino_secrets.h 
+    git update-index --assume-unchanged .\arduino_controller\webserver_config.h 
 
 The next file where the brunt of everything happens is the **arduino_controller.ino** file. This file makes use of 3 libraries.
 
@@ -226,9 +226,9 @@ The Arduino's hosted web interface allows users to control the lightsaber (ie. c
 ## Operation
 
 1. Connect the WS2812B LED strips to the DATA_PIN and DATA_PIN_CLONE pins defined in the code.
-2. Configure the settings for the Arduino and LED strip according to your specific configuration (number of LEDs, chip set, color order, brightness, maximum voltage, maximum amps, and IP Address).
-    - Also consider customizing the webpage title and the time interval for color changes in "Random Mode".
-3. Modify the arduino_secrets.h file to include your network's SSID and password for WiFi connection.
+2. Configure the settings for the Arduino and LED strip according to your specific configuration, including the number of LEDs, chipset, color order, brightness, maximum voltage, and maximum amperage.
+    - Also consider customizing the time interval for color changes in "Random Mode".
+3. Modify the webserver_config.h file to include your network's SSID, password, IP address, and the webpage title for the Arduino server.
 4. Upload the code to the Arduino Nano 33 IoT board.
 5. Navigate to web interface by placing the IP address you set for the arduino in the URL location of a browser. Use the web interface to control your lightsaber using the interface seen in Fig.8 below.
 
