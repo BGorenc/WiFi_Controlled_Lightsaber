@@ -24,14 +24,12 @@
 #include <SPI.h>
 #include <WiFiNINA.h>
 #include <FastLED.h>
-#include "arduino_secrets.h"
+#include "webserver_config.h"
 
 /* **********************SETTINGS********************** */
 /* Settings for Arduino */
 #define DATA_PIN 2                               // First LED Pin
 #define DATA_PIN_CLONE 3                         // Second LED Pin
-#define setArduinoIP IPAddress(xxx, xxx, x, xxx) // Set the IP address of the Arduino
-String webpageTitle = "Lightsaber Control";      // Title for the webpage
 unsigned long randomModeDurationMinutes = 10;    // Set the duration in minutes
 
 /* Settings for LED Strip */
@@ -47,10 +45,11 @@ unsigned long randomModeDurationMinutes = 10;    // Set the duration in minutes
 char ssid[] = SECRET_SSID;
 char pass[] = SECRET_PASSWORD;
 int keyIndex = 0;
-CRGB leds[NUM_LEDS];       // Second LED Strip
-CRGB ledsClone[NUM_LEDS];  // Second LED Strip
+CRGB leds[NUM_LEDS];         // First LED Strip
+CRGB ledsClone[NUM_LEDS];    // Second LED Strip
 WiFiServer server(80);
 String readString;
+String webpageTitle = WEBPAGE_TITLE;
 bool randomMode = false;
 unsigned long randomModeStartTime = 0;
 unsigned long randomModeDuration = randomModeDurationMinutes * 60 * 1000; // limit to trigger in milliseconds
@@ -59,7 +58,7 @@ void setup(){
 
   LEDconfig();
   Serial.begin(BAUD);
-  WiFi.config(setArduinoIP);
+  WiFi.config(SET_ARDUINO_IP);
   connectToWiFi();
   server.begin();
   randomSeed(analogRead(A0)); // seed the random function using a floating analog value
