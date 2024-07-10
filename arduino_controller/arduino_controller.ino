@@ -239,7 +239,8 @@ void displayWebPage(WiFiClient& client){
       }
       input[type='submit'] { background-color: gray; }
       input[type='button'] { background-color: red; }
-      p.one { border: 2px solid black; padding: 20px; }
+      p.one { border: 2px solid black; padding: 20px; width: 80%; margin: auto; text-align: center; }
+      p.instruction { padding: 20px; width: 80%; margin: auto; text-align: center; }
     </style>
   </head>
   <body>
@@ -252,9 +253,11 @@ void displayWebPage(WiFiClient& client){
         <br><br>
         <input type='submit' value='Select Color' onclick='staticColor()'>
       </div>
+      <p class='instruction'>
       <br><br>
-      To choose a fixed color that remains constant, adjust the slider to the desired color reflected in the slider's background, then click 'Select Color'. Alternatively, you can enter a value between 0 and 255 to precisely match the color displayed in the slider background.
+      To select a fixed color, adjust the slider to the desired hue displayed in the slider's background, then click 'Select Color'. Alternatively, you can enter a value between 0 and 255 to precisely match the color shown in the slider.
       <br><br>
+      </p>
       <p class='one'>
         <input type='submit' value='Random Mode' onclick='randomMode()'>
         <br><br>
